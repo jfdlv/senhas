@@ -949,12 +949,27 @@ class traductor{
 		}
 	}
 }
+class usuario{
+	private $usuario;
+	private $pass;
+	private $nombre;
+	private $apellido;
+
+	public function __construct($usuario,$pass,$nombre,$apellido){
+		$this->usuario=$usuario;
+		$this->pass=$pass;
+		$this->nombre=$nombre;
+		$this->apellido=$apellido;
+	}
+	// public function insertUsuario(){
+	// }
+}
 function conectar()
 	{
 		$servername = "localhost";
 		$username = "root";
 		$password = "";
-		$dbname = "lenguajes1";
+		$dbname = "lenguajes2";
 		// Create connection
 		$conn = mysqli_connect($servername, $username, $password, $dbname);	
 		$charesp = $conn->query("SET NAMES 'utf8'");
