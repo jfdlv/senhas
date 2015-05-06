@@ -862,7 +862,15 @@ class traductor{
 	public function obtenerSenhas(){
 		global $arrEP, $arrAct, $arrNE, $arrInTrans;
 		sizeof($arrEP);
-		$imagenes = array();
+		if ($this->tiempo == "presente") {
+			$imagenes = array('tiempo' => 0);
+		}
+		elseif ($this->tiempo == "pasado") {
+			$imagenes = array('tiempo' => 'imagenes/antes.png');
+		}
+		elseif ($this->tiempo == "futuro") {
+			$imagenes = array('tiempo' => 'imagenes/futuro.png');
+		}
 		$sen = new senha(null,null,null,null);
 		switch ($this->aut) {
 			case 1:

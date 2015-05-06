@@ -22,13 +22,13 @@ $imagenes=$tr->obtenerSenhas();
 print_r($imagenes);
 $_SESSION["imagenes"]=$imagenes;
 $_SESSION["palabras"]=$arr;
+$_SESSION["etiquetas"]=$arret;
 $_SESSION["frase"]=$frase;
 header("Location:traductor1.php");
-
 // for ($i=0; $i < sizeof($imagenes) ; $i++) { 
 // 	echo "<img src=$imagenes[$i]>";
 // }
-// print_r($imagenes);
+//print_r($imagenes);
 
 
 ?>

@@ -58,17 +58,48 @@ session_start();
 if (isset($_SESSION["imagenes"])) {
 	$imagenes=$_SESSION["imagenes"];
 	$palabras=$_SESSION["palabras"];
+	$etiquetas=$_SESSION["etiquetas"];
 	echo "<div class='panel panel-default's>";
 	echo "<div class='panel-heading'>".$_SESSION["frase"]."</div>";
 	echo "<div class='panel-body'>";
-	for ($i=0; $i < sizeof($imagenes) ; $i++) { 
+	for ($i=0; $i < (sizeof($imagenes)-1) ; $i++) { 
 		if (!empty($imagenes[$i])) {
-			echo "<div class='panel panel-default's>";
-			echo "<div class='panel-heading'>".$palabras[$i]."</div>";
-			echo "<div class='panel-body'>";
-			echo "<img class='img-responsive'src=$imagenes[$i]>";
-			echo "</div>";
-			echo "</div>";
+			if ($etiquetas[$i]=="V") {
+				if ($imagenes['tiempo'] == 'presente') {
+					echo "<div class='panel panel-default's>";
+					echo "<div class='panel-heading'>".$palabras[$i]."</div>";
+					echo "<div class='panel-body'>";
+					echo "<img class='img-responsive'src=$imagenes[$i]>";
+					echo "</div>";
+					echo "</div>";
+				}
+				else
+				{
+					echo "<div class='panel panel-default's>";
+					echo "<div class='panel-heading'>".$palabras[$i]."</div>";
+					echo "<div class='panel-body'>";
+					echo "<img class='img-responsive'src=".$imagenes['tiempo'].">";
+					echo "</div>";
+					echo "</div>";
+					echo "<div class='panel panel-default's>";
+					echo "<div class='panel-heading'>".$palabras[$i]."</div>";
+					echo "<div class='panel-body'>";
+					echo "<img class='img-responsive'src=$imagenes[$i]>";
+					echo "</div>";
+					echo "</div>";
+				}
+				
+			}
+			else
+			{
+				echo "<div class='panel panel-default's>";
+				echo "<div class='panel-heading'>".$palabras[$i]."</div>";
+				echo "<div class='panel-body'>";
+				echo "<img class='img-responsive'src=$imagenes[$i]>";
+				echo "</div>";
+				echo "</div>";
+			}
+			
 		}
 		else
 		{
