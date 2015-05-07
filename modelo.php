@@ -107,9 +107,7 @@ class automata{
 			{
 				echo "No cumple con ningún automáta";
 				$this->arret=$arret;
-				echo $sum1;
-				echo $sum;
-				print_r($arret);
+				return 0;
 				// print_r($this->arr);
 			}
 		}
@@ -131,38 +129,40 @@ class automata{
 			{
 				echo "No cumple con ningún automáta";
 				$this->arret=$arret;
+				return 0;
 				//print_r($arret);
 				// print_r($this->arr);
 			}
 		}
-		elseif (sizeof($arret)==sizeof($arrInTrans)) {
-			$sum=0;
-			for ($i=0; $i < sizeof($arrInTrans); $i++) { 
-				if (strcmp ($arret[$i], $arrInTrans[$i]) == 0){
-					$sum++;
-				}
-			}
-			if ($sum==sizeof($arrInTrans)) {
-				echo "Automata Oraciones Intransitivas<br>";
-				//print_r($arret);
-				// print_r($this->arr);
-				$this->arret=$arret;
-				return 4;
-			}
-			else
-			{
-				echo "No cumple con ningún automáta";
-				$this->arret=$arret;
-				print_r($arret);
-				// print_r($this->arr);
-			}
-		}
+		// elseif (sizeof($arret)==sizeof($arrInTrans)) {
+		// 	$sum=0;
+		// 	for ($i=0; $i < sizeof($arrInTrans); $i++) { 
+		// 		if (strcmp ($arret[$i], $arrInTrans[$i]) == 0){
+		// 			$sum++;
+		// 		}
+		// 	}
+		// 	if ($sum==sizeof($arrInTrans)) {
+		// 		echo "Automata Oraciones Intransitivas<br>";
+		// 		//print_r($arret);
+		// 		// print_r($this->arr);
+		// 		$this->arret=$arret;
+		// 		return 4;
+		// 	}
+		// 	else
+		// 	{
+		// 		echo "No cumple con ningún automáta";
+		// 		$this->arret=$arret;
+		// 		print_r($arret);
+		// 		// print_r($this->arr);
+		// 	}
+		// }
 		else
 		{
 			echo "No cumple con ningún automáta";
 			//print_r($arret);
 			// print_r($this->arr);
 			$this->arret=$arret;
+			return 0;
 		}
 		
 	}

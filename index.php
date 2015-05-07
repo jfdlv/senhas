@@ -25,19 +25,19 @@ include "modelo.php";
 				        <h4 class="modal-title text-center">Login</h4>
 				      </div>
 				      <div class="modal-body">
-				        <form class="form" id="formLogin" method="post" action="cont_login.php">
+				        <form class="form" id="formLogin" method="post" action="cont_login.php" >
 						  <div class="form-group">
 						    <label class="sr-only" for="user">Nombre de usuario</label>
 						    <label class="sr-only" for="pass">Contraseña</label>
 						    <div class="row">
 						    	<div class="col-md-6 col-md-offset-3">						    		
 								    <div class="input-group">
-								    		<input type="text" class="form-control" id="user" placeholder="Nombre de usuario" required>
+								    		<input type="text" class="form-control" id="user1" placeholder="Nombre de usuario" required>
 								    		<div class="input-group-addon"><i class="fa fa-user"></i></div>
 								    </div>	
 								    <br>
 								    <div class="input-group">
-								      		<input type="password" class="form-control" id="pass" placeholder="Contraseña" required>
+								      		<input type="password" class="form-control" id="pass1" placeholder="Contraseña" required>
 								      		<div class="input-group-addon"><i class="fa fa-key"></i></div>
 								    </div>
 						    	</div>
@@ -63,22 +63,28 @@ include "modelo.php";
 				        <h4 class="modal-title text-center">Registro</h4>
 				      </div>
 				      <div class="modal-body">
-				        <form class="form" id="formRegistro" method="post" action="cont_registro.php">
+				        <form class="form" id="formRegistro" method="post"	action="cont_registro.php" >
 						  <div class="form-group">
 						    <label class="sr-only" for="user">Nombre de usuario</label>
 						    <label class="sr-only" for="pass">Contraseña</label>
+						    <label class="sr-only" for="pass1">Repetir Contraseña</label>
 						    <legend class="text-left">Datos de usuario</legend>
 						    <div class="row row-centered">
 						    	<div class="col-md-6 col-md-offset-3">						    	
 								    <div class="input-group">
 								    		<div class="input-group-addon"><i class="fa fa-user"></i></div>
-								    		<input type="text" class="form-control" id="user" placeholder="Nombre de usuario" required>
+								    		<input type="text" class="form-control" id="user2" name="user" placeholder="Nombre de usuario" required>
 								    		
 								    </div>
 								    <br>
 								    <div class="input-group">		
 								    		<div class="input-group-addon"><i class="fa fa-key"></i></div>				   
-								    		<input type="text" class="form-control" id="pass" placeholder="Contraseña" required>								      		
+								    		<input type="password" class="form-control" id="pass2" name="pass" placeholder="Contraseña" required>								      		
+								    </div>
+								    <br>
+								    <div class="input-group">		
+								    		<div class="input-group-addon"><i class="fa fa-key"></i></div>				   
+								    		<input type="password" class="form-control" id="pass3" placeholder="Repetir Contraseña" required>								      		
 								    </div>
 						    	</div>	
 						    </div>
@@ -103,7 +109,16 @@ include "modelo.php";
 						</form>
 				      </div>
 				      <div class="modal-footer">
-				        <input type="submit" form="formRegistro" value="entrar" class="btn btn-primary">
+				      	<div class="row">
+				      		<div class="col-md-12">
+				      			<div class="col-md-6 text-left">
+				      				<p id='alerta'></p>
+				      			</div>
+				      			<div class="col-md-6 txt-right">
+				      				<input type="submit" form="formRegistro" value="entrar" class="btn btn-primary">
+				      			</div>
+				      		</div>
+				      	</div>
 				      </div>
 				    </div><!-- /.modal-content -->
 				  </div><!-- /.modal-dialog -->
@@ -114,6 +129,7 @@ include "modelo.php";
 				<a href="#modalLogin" data-toggle="modal" class="btn btn-primary">Login</a>
 				<a href="#modalRegister" data-toggle="modal" class="btn btn-primary">Registro</a>
 			</div>
+
 		</div>
 		<div class="row jumbotron">
 			<div class="row banner">
@@ -172,15 +188,12 @@ include "modelo.php";
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/validaciones.js"></script>
 	<script>
-	$().ready(function(){
-		// $(".mypop1").popover({
-		// 	placement: "bottom",
-		// 	title: "Inicie sesión",
-		// 	content:"<form action='cont_init.php' method='POST'><input type='text' name='usuario' /><input type='password' name='pass' /><input type='submit' value='entrar' /></form>",
-		// 	html: true,
-		// });
-	})
+
+	// $( document ).ready(function() {
+ //    	$('#alerta').append("si da papa");
+	// });
 	</script>
 </body>
 </html>

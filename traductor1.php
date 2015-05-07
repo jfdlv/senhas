@@ -49,6 +49,14 @@ session_start();
 			</div>
 		</div>
 
+		<hr>
+
+		<?php
+		if (isset($_GET["var"])) {
+		echo "<div class='row text-center'><div class='col-md-12'><h1>La oración no cumple con ningún autómata</h1></div></div>";
+		}
+		?>
+
 <div class="row">
 	<div class="col-md-12">
 		<div class="col-md-4 col-md-offset-4">
@@ -59,7 +67,7 @@ if (isset($_SESSION["imagenes"])) {
 	$imagenes=$_SESSION["imagenes"];
 	$palabras=$_SESSION["palabras"];
 	$etiquetas=$_SESSION["etiquetas"];
-	echo "<div class='panel panel-default's>";
+	echo "<div class='panel panel-default'>";
 	echo "<div class='panel-heading'>".$_SESSION["frase"]."</div>";
 	echo "<div class='panel-body'>";
 	for ($i=0; $i < (sizeof($imagenes)-1) ; $i++) { 

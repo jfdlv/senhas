@@ -7,24 +7,32 @@ include 'modelo.php';
 session_start();
 $frase=$_POST['frase'];
 $a= new automata($frase,null,null,null);
-$tr= new traductor($a->idenAut(),$t=$a->obTiempo(),$a->obArr());
 $num=$a->idenAut();
-echo $num."<br>";
-$t=$a->obTiempo();
-echo $t."<br>";
-$arr=$a->obArr();
-print_r($arr);
-echo "<br>";
-$arret=$a->obArret();
-print_r($arret);
-echo "<br>";
-$imagenes=$tr->obtenerSenhas();
-print_r($imagenes);
-$_SESSION["imagenes"]=$imagenes;
-$_SESSION["palabras"]=$arr;
-$_SESSION["etiquetas"]=$arret;
-$_SESSION["frase"]=$frase;
-header("Location:traductor1.php");
+echo $num;
+if ($num==0) {
+	header("Location: traductor1.php?var=$num");
+}
+else
+{
+	$tr= new traductor($num,$t=$a->obTiempo(),$a->obArr());
+	echo $num."<br>";
+	$t=$a->obTiempo();
+	echo $t."<br>";
+	$arr=$a->obArr();
+	print_r($arr);
+	echo "<br>";
+	$arret=$a->obArret();
+	print_r($arret);
+	echo "<br>";
+	$imagenes=$tr->obtenerSenhas();
+	print_r($imagenes);
+	$_SESSION["imagenes"]=$imagenes;
+	$_SESSION["palabras"]=$arr;
+	$_SESSION["etiquetas"]=$arret;
+	$_SESSION["frase"]=$frase;
+	header("Location:traductor1.php");
+}
+
 // for ($i=0; $i < sizeof($imagenes) ; $i++) { 
 // 	echo "<img src=$imagenes[$i]>";
 // }
