@@ -65,6 +65,12 @@ session_start();
 				        	</div>
 				        </div>
 				        </div>
+				        <hr>
+				        <div class="row">
+				        	<div class="col-md-12">
+				        		<p class="importante">NOTA: Si la palabra no existe en el corpus de lenguaje de señas esta se traducirá</p>
+				        	</div>
+				        </div>
 				      </div>
 				    </div><!-- /.modal-content -->
 				  </div><!-- /.modal-dialog -->

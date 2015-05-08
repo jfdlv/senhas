@@ -3,6 +3,10 @@
 // echo $var[0];
 
 include 'modelo.php';
-$tr= new traductor(null,null,null);
-$tr -> deletrear("hola");
+
+$tr= new automata("este",null,null,null);
+$tr->idenAut();
+$et=$tr->obArret();
+print_r($et);
+//$tr -> deletrear("hola");
 ?>

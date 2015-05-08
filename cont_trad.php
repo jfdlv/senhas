@@ -8,7 +8,6 @@ session_start();
 $frase=$_POST['frase'];
 $a= new automata($frase,null,null,null);
 $num=$a->idenAut();
-echo $num;
 if ($num==0) {
 	header("Location: traductor1.php?var=$num");
 }

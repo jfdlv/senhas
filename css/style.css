@@ -6726,3 +6726,10 @@ button.close {
 .cab {
   padding-bottom: 20px;
 }
+.modal .modal-body {
+  max-height: 420px;
+  overflow-y: auto;
+}
+.importante {
+  color: #ff0000;
+}
