@@ -9,7 +9,13 @@ header("Content-Type: text/html;charset=utf-8");
 $arrEP = array('SUS','V','ART','SUS');//1
 $arrAct = array('ART','SUS','V','ART','SUS');//2
 $arrNE = array('SUS','ADV','V','SUS'); //3
-$arrInTrans = array('SUS','V','SUS','PRP','ART','SUS','CCT');//4
+$arrE1 = array('SUS','V','SUS');//4
+$arrE2 = array('ART', 'SUS', 'V','SUS');//5
+$arrE3 = array('ART', 'SUS', 'V');//6
+$arrNE1 = array('ART', 'SUS', 'ADV', 'V', 'SUS');//7
+$arrNE2 = array('PRN', 'SUS', 'ADV', 'V', 'SUS');//8
+$arrNE3 = array('ART', 'SUS', 'ADV', 'V');//9
+$arrNE4 = array('PRN', 'SUS', 'ADV', 'V');//10
 // $a= new aut("jaime levantó la casa",null,null,null);
 // $a->idenAut();
 
@@ -29,7 +35,7 @@ class automata{
 	public function idenAut(){
 		//$arr=$this->parsing();
 		$arret=array();
-		global $arrEP, $arrAct, $arrNE, $arrInTrans;
+		global $arrEP, $arrAct, $arrNE;
 		//echo sizeof($arrEP);
 		// $arrEP = array('SUS','V','ART','SUS');//1
 		// $arrAct = array('ART','SUS','V','ART','SUS');//2

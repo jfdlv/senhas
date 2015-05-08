@@ -10,7 +10,66 @@ session_start();
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<!-- CONTENIDO PAGINA -->
 	<div class="container-fluid">
+
+<!-- MODAL AYUDA -->
+<div class="modal fade  bs-example-modal-lg" role="dialog" id="modalAyuda">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title text-center">Ayuda</h4>
+				      </div>
+				      <div class="modal-body">
+				        <div class="row">
+				        	<div class="col-md-12">
+				        		<p>Con este traductor puedes traducir oraciones enunciativas, enunciativas negativas, predicativas y activas que cumplan con las siguientes estructuras:</p>
+				        	</div>
+				        </div>
+				        <div class="row">
+				        	<div class="col-md-12">
+				        		<img src="imagenesst/estructuras.png" alt="" class="img-responsive" size="100">
+				        	</div>
+				        </div>
+				        <hr>
+				        <div class="row">
+				        	<div class="col-md-12">
+				        		<h3>Siendo:</h3>
+				        	</div>
+				        </div>
+				        <div class="row text-center">
+				        <div class="row">
+				        	<div class="col-md-12">
+				        		<p>SUS = SUSTANTIVO</p>
+				        	</div>
+				        </div>
+				        <div class="row">
+				        	<div class="col-md-12">
+				        		<p>V = VERBO</p>
+				        	</div>
+				        </div>
+				        <div class="row">
+				        	<div class="col-md-12">
+				        		<p>ART = ARTICULO</p>
+				        	</div>
+				        </div>
+				        <div class="row">
+				        	<div class="col-md-12">
+				        		<p>ADV = ADVERBIO</p>
+				        	</div>
+				        </div>
+				        <div class="row">
+				        	<div class="col-md-12">
+				        		<p>PRN = PRONOMBRE</p>
+				        	</div>
+				        </div>
+				        </div>
+				      </div>
+				    </div><!-- /.modal-content -->
+				  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 		<br>
 		<div class="row">
 			<div class="col-md-12 cab">
@@ -23,7 +82,14 @@ session_start();
 		<div class="row">	
 			<div class="col-md-4 col-md-offset-4">
 				<div class="panel panel-default">
-					  <div class="panel-heading">TRADUCTOR</div>
+					  <div class="panel-heading">
+					  <div class="row">
+					  	<div class="col-md-12">
+					  		<div class="col-md-6 text-left">TRADUCTOR</div>
+					  		<div class="col-md-6 text-right"><a href="#modalAyuda" data-toggle="modal" class="btn btn-primary"><i class="fa fa-question-circle"></i></a></div>
+					  	</div>
+					  </div>
+					  </div>
 					  <div class="panel-body">
 						<form action="cont_trad.php" id="formTrad" class="form" method="post">
 							<div class="formgroup">
@@ -137,5 +203,15 @@ if (isset($_SESSION["imagenes"])) {
     		</div>
     	</div>
 </div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/validaciones.js"></script>
+	<script>
+
+	// $( document ).ready(function() {
+ //    	$('#alerta').append("si da papa");
+	// });
+	</script>
 </body>
 </html>
