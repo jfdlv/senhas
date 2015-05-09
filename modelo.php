@@ -1140,8 +1140,14 @@ class usuario{
 		$this->nombre=$nombre;
 		$this->apellido=$apellido;
 	}
-	// public function insertUsuario(){
-	// }
+	public function altaUsuario(){
+				$link=conectar();
+				$pass = password_hash($this->pass, PASSWORD_DEFAULT);
+				$query="INSERT INTO usuario VALUES('$this->usuario','$pass','$this->nombre','$this->apellido')";
+				mysqli_query($link,$query);
+				mysqli_close($link);
+				return $result;
+	}
 }
 function conectar()
 	{

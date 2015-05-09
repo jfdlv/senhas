@@ -94,12 +94,12 @@ include "modelo.php";
 						    	<div class="col-md-6 col-md-offset-3">						    	
 								    <div class="input-group">
 								    		<div class="input-group-addon">Nombres</div>
-								    		<input type="text" class="form-control" required>
+								    		<input type="text" name='nombres' class="form-control" required>
 								    </div>
 								    <br>
 								    <div class="input-group">
 								    		<div class="input-group-addon">Apellidos</div>
-								    		<input type="text" class="form-control" required>
+								    		<input type="text" name='apellidos' class="form-control" required>
 								      		
 								    </div>
 						    	</div>	
