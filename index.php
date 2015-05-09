@@ -112,7 +112,7 @@ include "modelo.php";
 				      	<div class="row">
 				      		<div class="col-md-12">
 				      			<div class="col-md-6 text-left">
-				      				<p id='alerta'></p>
+				      				<p id='alerta' class='importante'></p>
 				      			</div>
 				      			<div class="col-md-6 txt-right">
 				      				<input type="submit" form="formRegistro" value="entrar" class="btn btn-primary">
