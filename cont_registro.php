@@ -7,6 +7,4 @@ $apellido = $_POST["apellidos"];
 $u = new usuario($usuario,$password,$nombre,$apellido);
 $u -> altaUsuario();
 header("Location: index.php");
-
-
 ?>

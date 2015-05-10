@@ -148,6 +148,7 @@ include "modelo.php";
 				<li class="active" role="presentation"><a href="">Inicio</a></li>
 				<li   role="presentation"><a href="diccionario.php">Diccionario</a></li>
 				<li   role="presentation"><a href="traductor1.php">Traductor</a></li>
+				<li   role="presentation"><a href="deletrear.php">Deletrear</a></li>
 				<li   role="presentation"><a href="#">Pruebas</a></li>
 				<li   role="presentation"><a href="#">Acerca de</a></li>
 			</ul>
