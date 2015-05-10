@@ -133,9 +133,12 @@ include "modelo.php";
 		</div>
 		<div class="row jumbotron">
 			<div class="row banner">
-				<div class="col-md-12">
-					<div class="col-md-6 col-md-offset-4">
-					<img class="img-responsive" src="imagenesst/banner.png" alt="">
+				<div class="col-md-12 text-center">
+					<div class="row">
+						<h1>LENGUAJE DE SEÑAS</h1>	
+					</div>
+					<div class="row">
+							<p>~ SISTEMA DE APRENDIZAJE ~</p>
 					</div>
 				</div>
 			</div>
