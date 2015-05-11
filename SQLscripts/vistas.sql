@@ -9,6 +9,7 @@ create view img_ltr as select a.palabra, b.imagen from etiquetas a, senhas b, et
 create view img_adj as select a.palabra, b.imagen from etiquetas a, senhas b, et_se c where a.id=c.ide and b.id=c.ids and a.etiqueta="ADJ";
 create view img_itg as select a.palabra, b.imagen from etiquetas a, senhas b, et_se c where a.id=c.ide and b.id=c.ids and a.etiqueta="ITG";
 create view img_prn as select a.palabra, b.imagen from etiquetas a, senhas b, et_se c where a.id=c.ide and b.id=c.ids and a.etiqueta="PRN";
+create view img_vi as select a.infinitivo, b.imagen from veri a, senhas b, et_v c where a.idv=c.idv0 and b.id=c.ids0;
 
 
 

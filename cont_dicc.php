@@ -12,6 +12,10 @@ switch ($etiqueta) {
 		break;
 	case 'V':
 		$imagen=$s->obV($palabra);
+		if(empty($imagen)){
+		$imagen=$s->obVi($palabra);
+		echo $imagen;
+		}
 		break;
 	case 'ART':
 		$imagen=$s->obArt($palabra);

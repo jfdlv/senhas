@@ -55,7 +55,18 @@ class automata{
 
 						$etiqueta=$this->desConj($this->arr[$i],$i);
 						if(empty($etiqueta)){
-							array_push($arret, 'SUS');
+
+							$etiqueta=$this->desConji($this->arr[$i],$i);
+							if (empty($etiqueta)) {
+
+								array_push($arret, 'SUS');
+							} 
+							else 
+							{
+								array_push($arret, $etiqueta);							
+							}
+							
+							
 						}
 						else
 						{
@@ -279,11 +290,21 @@ class automata{
 		return $arr;
 	}
 	public function idenEti($palabra){
-		$conn=conectar();
-		$query="SELECT etiqueta FROM etiquetas WHERE palabra='$palabra'";
-		$result=mysqli_query($conn,$query);
+		$link=conectar();
+		$query="SELECT etiqueta FROM etiquetas WHERE palabra='$palabra'COLLATE utf8_bin";
+		$query1="SELECT infinitivo FROM veri WHERE infinitivo='$palabra' COLLATE utf8_bin";
+		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
-		mysqli_close($conn);
+		if(empty($array["etiqueta"]))
+		{
+			$result=mysqli_query($link,$query1);
+			$array=mysqli_fetch_array($result);
+			if (!empty($array["infinitivo"])) {
+				return "V";
+			}
+
+		}
+		mysqli_close($link);
 		return $array['etiqueta'];
 	}
 	public function desGenero($palabra,$i){
@@ -788,9 +809,66 @@ class automata{
 		}
 		return $etiqueta;
 	}
-	// public function desConji($verbo,$i){
+	public function desConji($verbo,$i){
+		$etiqueta="";
+		$link=conectar();
+		$query="SELECT a.infinitivo as verbo FROM veri a, presente b WHERE b.palabra='".$verbo."' AND a.idv=b.idv1 COLLATE latin1_general_ci";
+		echo $query."<br>";
+		$query1="SELECT a.infinitivo as verbo FROM veri a, pasado1 b WHERE b.palabra='".$verbo."' AND a.idv=b.idv2 COLLATE latin1_general_ci";
+		echo $query1."<br>";
+		$query2="SELECT a.infinitivo as verbo FROM veri a, pasado2 b WHERE b.palabra='".$verbo."' AND a.idv=b.idv3 COLLATE latin1_general_ci";
+		echo $query2."<br>";
+		$query3="SELECT a.infinitivo as verbo FROM veri a, futuro b WHERE b.palabra='".$verbo."' AND a.idv=b.idv4 COLLATE latin1_general_ci";
+		echo $query3."<br>";
+		$result=mysqli_query($link,$query);
+		$array=mysqli_fetch_array($result);
+		$infinitivo = $array["verbo"];
 
-	// }
+		if (!empty($infinitivo)) {
+						$this->tiempo="presente";
+						$this->arr[$i]=$infinitivo;
+						$etiqueta="V";
+		}
+		else
+		{
+			$result=mysqli_query($link,$query1);
+			$array=mysqli_fetch_array($result);
+			$infinitivo = $array["verbo"];
+
+			if (!empty($infinitivo)) {
+				$this->tiempo="pasado";
+				$this->arr[$i]=$infinitivo;
+				$etiqueta="V";
+			}
+			else
+			{
+				$result=mysqli_query($link,$query2);
+				$array=mysqli_fetch_array($result);
+				$infinitivo = $array["verbo"];
+
+				if (!empty($infinitivo)) {
+					$this->tiempo="pasado";
+					$this->arr[$i]=$infinitivo;
+					$etiqueta="V";
+				}
+				else
+				{
+					$result=mysqli_query($link,$query3);
+					$array=mysqli_fetch_array($result);
+					$infinitivo = $array["verbo"];
+
+					if (!empty($infinitivo)) {
+						$this->tiempo="futuro";
+						$this->arr[$i]=$infinitivo;
+						$etiqueta="V";
+					}
+				}
+			}
+
+		}	
+		mysqli_close($link);
+		return $etiqueta;
+	}
 	public function obTiempo(){
 		return $this->tiempo;
 	}
@@ -830,6 +908,21 @@ class senha{
 		mysqli_close($link);
 
 	}
+	public function insertImageni(){
+
+		$link=conectar();
+		$link=conectar();
+		$query="INSERT INTO senhas VALUES(null,'$this->imagenr')";
+		//echo $query;
+		mysqli_query($link,$query);
+		$this->id=mysqli_insert_id($link);
+		for ($i=0; $i < sizeof($this->ids); $i++) { 
+			$query1="INSERT INTO et_v VALUES(".$this->id.",".$this->ids[$i].")";
+			mysqli_query($link,$query1);
+		}
+		mysqli_close($link);
+
+	}
 	public function quitarComas()
 	{
 		$ids = array();
@@ -853,7 +946,8 @@ class senha{
 	}
 	public function obSus($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_sus where palabra='$palabra'";
+		$query="SELECT imagen FROM img_sus where palabra='$palabra' COLLATE utf8_bin	";
+		echo $query;
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -861,7 +955,7 @@ class senha{
 	}
 	public function obAdv($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_adv where palabra='$palabra'";
+		$query="SELECT imagen FROM img_adv where palabra='$palabra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -869,7 +963,15 @@ class senha{
 	}
 	public function obV($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_v where palabra='$palabra'";
+		$query="SELECT imagen FROM img_v where palabra='$palabra' COLLATE utf8_bin	";
+		$result=mysqli_query($link,$query);
+		$array=mysqli_fetch_array($result);
+		mysqli_close($link);
+		return $array["imagen"];
+	}
+	public function obVi($palabra){
+		$link=conectar();
+		$query="SELECT imagen FROM img_vi where infinitivo='$palabra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -877,7 +979,7 @@ class senha{
 	}
 	public function obArt($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_art where palabra='$palabra'";
+		$query="SELECT imagen FROM img_art where palabra='$palabra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -885,7 +987,7 @@ class senha{
 	}
 	public function obPrp($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_prp where palabra='$palabra'";
+		$query="SELECT imagen FROM img_prp where palabra='$palabra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -893,7 +995,7 @@ class senha{
 	}
 	public function obAdp($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_adp where palabra='$palabra'";
+		$query="SELECT imagen FROM img_adp where palabra='$palabra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -901,7 +1003,7 @@ class senha{
 	}
 	public function obCct($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_cct where palabra='$palabra'";
+		$query="SELECT imagen FROM img_cct where palabra='$palabra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -909,7 +1011,7 @@ class senha{
 	}
 	public function obAdj($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_Adj where palabra='$palabra'";
+		$query="SELECT imagen FROM img_Adj where palabra='$palabra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -917,7 +1019,7 @@ class senha{
 	}
 	public function obItg($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_itg where palabra='$palabra'";
+		$query="SELECT imagen FROM img_itg where palabra='$palabra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -925,7 +1027,7 @@ class senha{
 	}
 	public function obPrn($palabra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_prn where palabra='$palabra'";
+		$query="SELECT imagen FROM img_prn where palabra='$palabra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -933,7 +1035,7 @@ class senha{
 	}
 	public function obLtr($letra){
 		$link=conectar();
-		$query="SELECT imagen FROM img_ltr where palabra='$letra'";
+		$query="SELECT imagen FROM img_ltr where palabra='$letra' COLLATE utf8_bin	";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -970,7 +1072,15 @@ class traductor{
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
 					elseif ($arrEP[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
+						
 					}
 					elseif ($arrEP[$i]=="ART") {
 						array_push($imagenes, $sen->obArt($this->arr[$i]));
@@ -984,7 +1094,14 @@ class traductor{
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
 					elseif ($arrAct[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
 					}
 					elseif ($arrAct[$i]=="ART") {
 						array_push($imagenes, $sen->obArt($this->arr[$i]));
@@ -1001,7 +1118,14 @@ class traductor{
 						array_push($imagenes, $sen->obAdv($this->arr[$i]));
 					}
 					elseif ($arrNE[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
 					}
 				}
 			break;
@@ -1012,7 +1136,14 @@ class traductor{
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
 					elseif ($arrE1[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
 					}
 				}
 			break;
@@ -1026,7 +1157,14 @@ class traductor{
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
 					elseif ($arrE1[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
 					}
 				}
 			break;
@@ -1040,7 +1178,14 @@ class traductor{
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
 					elseif ($arrE3[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
 					}
 				}
 			break;
@@ -1057,7 +1202,14 @@ class traductor{
 						array_push($imagenes, $sen->obAdv($this->arr[$i]));
 					}
 					elseif ($arrInE1[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
 					}
 				}
 			break;
@@ -1074,7 +1226,14 @@ class traductor{
 						array_push($imagenes, $sen->obAdv($this->arr[$i]));
 					}
 					elseif ($arrInE1[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
 					}
 				}
 			break;
@@ -1091,7 +1250,14 @@ class traductor{
 						array_push($imagenes, $sen->obAdv($this->arr[$i]));
 					}
 					elseif ($arrInE1[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
 					}
 				}
 			break;
@@ -1108,7 +1274,14 @@ class traductor{
 						array_push($imagenes, $sen->obAdv($this->arr[$i]));
 					}
 					elseif ($arrInE1[$i]=="V") {
-						array_push($imagenes, $sen->obV($this->arr[$i]));
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
 					}
 				}
 			break;
