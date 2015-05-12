@@ -49,7 +49,7 @@ session_start();
 					</div>
 				  </div>
 				  <div class="panel-body">
-					<form action="cont_del.php" class="form" method="post" id="formDicc">
+					<form action="cont_del.php" class="form" method="post" id="formDel">
 						<div class="formgroup">
 							<label for="palabra" class="sr-only">Palabra en lenguaje natural</label>
 							<div class="row row-centered">
@@ -69,7 +69,7 @@ session_start();
 				  				<p id="alerta" class="importante"></p>
 				  			</div>
 				  			<div class="col-md-6 text-right">
-				  				<button class="btn btn-primary" type="submit" form="formDicc"><i class="fa fa-search"></i></button>	
+				  				<button class="btn btn-primary" type="submit" form="formDel"><i class="fa fa-search"></i></button>	
 				  			</div>
 				  		</div>
 				  	</div>
@@ -96,6 +96,7 @@ if (isset($_SESSION["palabra"])) {
 							$tr -> deletrear($_SESSION["palabra"]);
 					echo "</div>";
 				echo "</div>";
+				unset($_SESSION["palabra"]);
 }
 ?>			
 			</div>

@@ -19,7 +19,7 @@ session_start();
 				        <h4 class="modal-title text-center">Ayuda</h4>
 				      </div>
 				      <div class="modal-body">
-				        <p>Puede buscar una sola palabra por consulta en este traductor</p>
+				        <p>Puede buscar una sola palabra por consulta en este traductor, si se busca un verbo este deberá estar en su infinitivo</p>
 				        <p class="importante">Nota: Es posible que el diccionario no encuentre la palabra que usted consulte por que no ésta no se encuentre registrada o por que este mal escrita</p>
 				      </div>
 				    </div><!-- /.modal-content -->

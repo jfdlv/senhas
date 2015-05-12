@@ -25,6 +25,20 @@ var valform2 = {
 	}
 	
 }
+var valform3 = {
+	Sub: function() {
+		$("#formDel").submit(function( event ){
+				var vector = Par();
+				if (vector>1) 
+				{
+					//alert("El diccionario solo busca una palabra");
+					$("#alerta").html("Solo puede deletrear una palabra");
+	  				event.preventDefault();
+				};
+		});
+	}
+	
+}
 function Par () {
 		var vector = new Array();
 		var palabra = $("#palabra").val();
@@ -49,6 +63,7 @@ function Par () {
 }
 $(document).ready(valform1.Sub);
 $(document).ready(valform2.Sub);
+$(document).ready(valform3.Sub);
 
 
 
