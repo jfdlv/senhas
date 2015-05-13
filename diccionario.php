@@ -57,7 +57,7 @@ session_start();
 							<div class="row row-centered">
 								<div class="col-md-6 col-md-offset-4">
 									<div class="input-group">
-										<input type="text" class="form-control" id="palabra" placeholder="Palabra en lenguaje natural" name="palabra" required>
+										<input type="text" class="form-control" id="palabra" onChange="Min('#palabra')" placeholder="Palabra en lenguaje natural" name="palabra" required>
 									</div>
 								</div>
 							</div>

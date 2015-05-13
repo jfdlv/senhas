@@ -61,6 +61,10 @@ function Par () {
 		return vector.length;
 
 }
+function Min (valor){
+		var minus = $(valor).val().toLowerCase();
+		$(valor).val(minus);
+}
 $(document).ready(valform1.Sub);
 $(document).ready(valform2.Sub);
 $(document).ready(valform3.Sub);
