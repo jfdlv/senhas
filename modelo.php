@@ -6,16 +6,22 @@ header("Content-Type: text/html;charset=utf-8");
 // 				while($fila=mysqli_fetch_array($result)){
 // 					echo $fila["palabra"]."<br>";
 				// }
-$arrEP = array('SUS','V','ART','SUS');//1 //listo
+$arrEP = array('SUS','V','ART','SUS');//1 
 $arrAct = array('ART','SUS','V','ART','SUS');//2 
-$arrNE = array('SUS','ADV','V','SUS'); //3 //listo
+$arrNE = array('SUS','ADV','V','SUS'); //3 
 $arrE1 = array('SUS','V','SUS');//4
-$arrE2 = array('ART', 'SUS', 'V','SUS');//5 //listo
+$arrE2 = array('ART', 'SUS', 'V','SUS');//5 
 $arrE3 = array('ART', 'SUS', 'V');//6
-$arrNE1 = array('ART', 'SUS', 'ADV', 'V', 'SUS');//7 //listo 
-$arrNE2 = array('PRN', 'SUS', 'ADV', 'V', 'SUS');//8 //listo
-$arrNE3 = array('ART', 'SUS', 'ADV', 'V');//9 //listo
-$arrNE4 = array('PRN', 'SUS', 'ADV', 'V');//10 //listo
+$arrNE1 = array('ART', 'SUS', 'ADV', 'V', 'SUS');//7  
+$arrNE2 = array('PRN', 'SUS', 'ADV', 'V', 'SUS');//8 
+$arrNE3 = array('ART', 'SUS', 'ADV', 'V');//9 
+$arrNE4 = array('PRN', 'SUS', 'ADV', 'V');//10 
+$arrA1 = array('SUS','V','ADJ');//11 
+$arrA2 = array('ART', 'SUS', 'V','ADJ');//12
+$arrA3 = array('SUS','ADV','V','ADJ'); //13
+$arrA4 = array('ART', 'SUS', 'ADV', 'V', 'ADJ');//14
+$arrA5 = array('PRN', 'SUS', 'ADV', 'V', 'ADJ');//15
+
 // $a= new aut("jaime levantó la casa",null,null,null);
 // $a->idenAut();
 
@@ -35,7 +41,7 @@ class automata{
 	public function idenAut(){
 		//$arr=$this->parsing();
 		$arret=array();
-		global $arrEP, $arrAct, $arrNE, $arrE1, $arrE2, $arrE3, $arrNE1, $arrNE2, $arrNE3, $arrNE4;
+		global $arrEP, $arrAct, $arrNE, $arrE1, $arrE2, $arrE3, $arrNE1, $arrNE2, $arrNE3, $arrNE4, $arrA1, $arrA2, $arrA3, $arrA4, $arrA5;
 		//echo sizeof($arrEP);
 		// $arrEP = array('SUS','V','ART','SUS');//1
 		// $arrAct = array('ART','SUS','V','ART','SUS');//2
@@ -97,6 +103,7 @@ class automata{
 		if(sizeof($arret)==3){
 			$sum=0;
 			$sum1=0;
+			$sum2=0;
 
 			for ($i=0; $i < 3 ; $i++) { 
 				if (strcmp ($arret[$i], $arrE1[$i]) == 0){
@@ -104,7 +111,9 @@ class automata{
 				}
 				if (strcmp ($arret[$i], $arrE3[$i]) == 0) {
 					$sum1++;
-					echo $sum1;
+				}
+				if (strcmp($arret[$i], $arrA1[$i]) == 0) {
+					$sum2++;
 				}
 			}
 
@@ -121,6 +130,12 @@ class automata{
 				$this->arret=$arret;
 				return 6;
 			}
+			elseif ($sum2==sizeof($arrA1)){
+				echo "automata negativo con adjetivo<br>";
+				$this->arret=$arret;
+				print_r($this->arret);
+				return 11;
+			}
 		}
 		elseif(sizeof($arret)==4){
 			echo "entra";
@@ -129,6 +144,8 @@ class automata{
 			$sum2=0;
 			$sum3=0;
 			$sum4=0;
+			$sum5=0;
+			$sum6=0;
 
 			for ($i=0; $i < 4; $i++) { 
 				if (strcmp ($arret[$i], $arrEP[$i]) == 0){
@@ -150,6 +167,14 @@ class automata{
 					$sum4++;
 					echo $sum4;
 				}
+				if (strcmp ($arret[$i], $arrA2[$i]) == 0) {
+					$sum5++;
+					echo $sum5;
+				}
+				if (strcmp ($arret[$i], $arrA3[$i]) == 0) {
+					$sum6++;
+					echo $sum6;
+				}
 
 			}
 			if ($sum==sizeof($arrEP)) {
@@ -165,23 +190,35 @@ class automata{
 				$this->arret=$arret;
 				return 3;
 			}
-			elseif ($sum1==sizeof($arrE2)) {
+			elseif ($sum2==sizeof($arrE2)) {
 				# code...
 				echo "Automata Oraciones Enunciativas 2<br>";
 				$this->arret=$arret;
 				return 5;
 			}
-			elseif ($sum1==sizeof($arrNE3)) {
+			elseif ($sum3==sizeof($arrNE3)) {
 				# code...
 				echo "Automata Oraciones Enunciativas Negativa 3<br>";
 				$this->arret=$arret;
 				return 9;
 			}
-			elseif ($sum1==sizeof($arrNE4)) {
+			elseif ($sum4==sizeof($arrNE4)) {
 				# code...
 				echo "Automata Oraciones Enunciativas Negativa 4<br>";
 				$this->arret=$arret;
 				return 10;
+			}
+			elseif ($sum5==sizeof($arrA2)) {
+				# code...
+				echo "Automata Oraciones Enunciativas con adjetivo 2<br>";
+				$this->arret=$arret;
+				return 12;
+			}
+			elseif ($sum6==sizeof($arrA3)) {
+				# code...
+				echo "Automata Oraciones Enunciativas con adjetivo 3<br>";
+				$this->arret=$arret;
+				return 13;
 			}
 			else
 			{
@@ -195,6 +232,8 @@ class automata{
 			$sum=0;
 			$sum1=0;
 			$sum2=0;
+			$sum3=0;
+			$sum4=0;
 			for ($i=0; $i < 5; $i++) { 
 				if (strcmp ($arret[$i], $arrAct[$i]) == 0){
 					$sum++;
@@ -204,6 +243,12 @@ class automata{
 				}
 				if (strcmp ($arret[$i], $arrNE2[$i]) == 0){
 					$sum2++;
+				}
+				if (strcmp ($arret[$i], $arrA4[$i]) == 0){
+					$sum3++;
+				}
+				if (strcmp ($arret[$i], $arrA5[$i]) == 0){
+					$sum4++;
 				}
 			}
 			if ($sum==sizeof($arrAct)) {
@@ -227,6 +272,16 @@ class automata{
 				$this->arret=$arret;
 				return 8;
 			}
+			elseif ($sum3==sizeof($arrA4)) {
+				echo "Automata Oraciones Enunciativas con adjetivo 4<br>";
+				$this->arret=$arret;
+				return 14;
+			}
+			elseif ($sum4==sizeof($arrA5)) {
+				echo "Automata Oraciones Enunciativas con adjetivo 5<br>";
+				$this->arret=$arret;
+				return 15;
+			}
 			else
 			{
 				echo "No cumple con ningún automáta";
@@ -236,28 +291,6 @@ class automata{
 				// print_r($this->arr);
 			}
 		}
-		// elseif (sizeof($arret)==sizeof($arrInTrans)) {
-		// 	$sum=0;
-		// 	for ($i=0; $i < sizeof($arrInTrans); $i++) { 
-		// 		if (strcmp ($arret[$i], $arrInTrans[$i]) == 0){
-		// 			$sum++;
-		// 		}
-		// 	}
-		// 	if ($sum==sizeof($arrInTrans)) {
-		// 		echo "Automata Oraciones Intransitivas<br>";
-		// 		//print_r($arret);
-		// 		// print_r($this->arr);
-		// 		$this->arret=$arret;
-		// 		return 4;
-		// 	}
-		// 	else
-		// 	{
-		// 		echo "No cumple con ningún automáta";
-		// 		$this->arret=$arret;
-		// 		print_r($arret);
-		// 		// print_r($this->arr);
-		// 	}
-		// }
 		else
 		{
 			echo "No cumple con ningún automáta";
@@ -947,7 +980,6 @@ class senha{
 	public function obSus($palabra){
 		$link=conectar();
 		$query="SELECT imagen FROM img_sus where palabra='$palabra' COLLATE utf8_bin	";
-		echo $query;
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -972,6 +1004,7 @@ class senha{
 	public function obVi($palabra){
 		$link=conectar();
 		$query="SELECT imagen FROM img_vi where infinitivo='$palabra' COLLATE utf8_bin	";
+		echo $query."<br>";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		mysqli_close($link);
@@ -1053,7 +1086,7 @@ class traductor{
 	}	
 
 	public function obtenerSenhas(){
-		global $arrEP, $arrAct, $arrNE, $arrE1, $arrE2, $arrE3, $arrNE1, $arrNE2, $arrNE3, $arrNE4;
+		global $arrEP, $arrAct, $arrNE, $arrE1, $arrE2, $arrE3, $arrNE1, $arrNE2, $arrNE3, $arrNE4, $arrA1, $arrA2, $arrA3, $arrA4, $arrA5;
 		sizeof($arrEP);
 		if ($this->tiempo == "presente") {
 			$imagenes = array('tiempo' => 0);
@@ -1156,7 +1189,7 @@ class traductor{
 					elseif ($arrE2[$i]=="SUS") {
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
-					elseif ($arrE1[$i]=="V") {
+					elseif ($arrE2[$i]=="V") {
 						$c = $sen->obV($this->arr[$i]);
 						if(!empty($c)){
 							array_push($imagenes, $sen->obV($this->arr[$i]));
@@ -1192,16 +1225,16 @@ class traductor{
 
 			case 7:
 				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
-					if ($arrE2[$i]=="ART") {
+					if ($arrNE1[$i]=="ART") {
 						array_push($imagenes, $sen->obArt($this->arr[$i]));
 					}
-					elseif ($arrE2[$i]=="SUS") {
+					elseif ($arrNE1[$i]=="SUS") {
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
-					elseif ($arrInE1[$i]=="ADV") {
+					elseif ($arrNE1[$i]=="ADV") {
 						array_push($imagenes, $sen->obAdv($this->arr[$i]));
 					}
-					elseif ($arrInE1[$i]=="V") {
+					elseif ($arrNE1[$i]=="V") {
 						$c = $sen->obV($this->arr[$i]);
 						if(!empty($c)){
 							array_push($imagenes, $sen->obV($this->arr[$i]));
@@ -1216,16 +1249,16 @@ class traductor{
 
 			case 8:
 				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
-					if ($arrE2[$i]=="PRN") {
+					if ($arrNE2[$i]=="PRN") {
 						array_push($imagenes, $sen->obPrn($this->arr[$i]));
 					}
-					elseif ($arrE2[$i]=="SUS") {
+					elseif ($arrNE2[$i]=="SUS") {
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
-					elseif ($arrInE1[$i]=="ADV") {
+					elseif ($arrNE2[$i]=="ADV") {
 						array_push($imagenes, $sen->obAdv($this->arr[$i]));
 					}
-					elseif ($arrInE1[$i]=="V") {
+					elseif ($arrNE2[$i]=="V") {
 						$c = $sen->obV($this->arr[$i]);
 						if(!empty($c)){
 							array_push($imagenes, $sen->obV($this->arr[$i]));
@@ -1240,16 +1273,16 @@ class traductor{
 
 			case 9:
 				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
-					if ($arrE2[$i]=="ART") {
+					if ($arrNE3[$i]=="ART") {
 						array_push($imagenes, $sen->obArt($this->arr[$i]));
 					}
-					elseif ($arrE2[$i]=="SUS") {
+					elseif ($arrNE3[$i]=="SUS") {
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
-					elseif ($arrInE1[$i]=="ADV") {
+					elseif ($arrNE3[$i]=="ADV") {
 						array_push($imagenes, $sen->obAdv($this->arr[$i]));
 					}
-					elseif ($arrInE1[$i]=="V") {
+					elseif ($arrNE3[$i]=="V") {
 						$c = $sen->obV($this->arr[$i]);
 						if(!empty($c)){
 							array_push($imagenes, $sen->obV($this->arr[$i]));
@@ -1264,16 +1297,16 @@ class traductor{
 
 			case 10:
 				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
-					if ($arrE2[$i]=="PRN") {
+					if ($arrNE4[$i]=="PRN") {
 						array_push($imagenes, $sen->obPrn($this->arr[$i]));
 					}
-					elseif ($arrE2[$i]=="SUS") {
+					elseif ($arrNE4[$i]=="SUS") {
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
 					}
-					elseif ($arrInE1[$i]=="ADV") {
+					elseif ($arrNE4[$i]=="ADV") {
 						array_push($imagenes, $sen->obAdv($this->arr[$i]));
 					}
-					elseif ($arrInE1[$i]=="V") {
+					elseif ($arrNE4[$i]=="V") {
 						$c = $sen->obV($this->arr[$i]);
 						if(!empty($c)){
 							array_push($imagenes, $sen->obV($this->arr[$i]));
@@ -1282,6 +1315,129 @@ class traductor{
 						{
 							array_push($imagenes, $sen->obVi($this->arr[$i]));
 						}
+					}
+				}
+			break;
+
+			case 11:
+				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
+					if ($arrA1[$i]=="SUS") {
+						array_push($imagenes, $sen->obSus($this->arr[$i]));
+					}
+					elseif ($arrA1[$i]=="V") {
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
+					}
+					elseif ($arrA1[$i]=="ADJ") {
+						array_push($imagenes, $sen->obAdj($this->arr[$i]));
+					}
+				}
+			break;
+
+			case 12:
+				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
+					if ($arrA2[$i]=="ART") {
+						array_push($imagenes, $sen->obArt($this->arr[$i]));
+					}
+					elseif ($arrA2[$i]=="SUS") {
+						array_push($imagenes, $sen->obSus($this->arr[$i]));
+					}
+					elseif ($arrA2[$i]=="V") {
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
+					}
+					elseif ($arrA2[$i]=="ADJ") {
+						array_push($imagenes, $sen->obAdj($this->arr[$i]));
+					}
+				}
+			break;
+
+			case 13:
+				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
+					if ($arrA3[$i]=="SUS") {
+						array_push($imagenes, $sen->obSus($this->arr[$i]));
+					}
+					elseif ($arrA3[$i]=="ADV") {
+						array_push($imagenes, $sen->obAdv($this->arr[$i]));
+					}
+					elseif ($arrA3[$i]=="V") {
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
+					}
+					elseif ($arrA3[$i]=="ADJ") {
+						array_push($imagenes, $sen->obAdj($this->arr[$i]));
+					}
+				}
+			break;
+
+			case 14:
+				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
+					if ($arrA4[$i]=="ART") {
+						array_push($imagenes, $sen->obArt($this->arr[$i]));
+					}
+					elseif ($arrA4[$i]=="SUS") {
+						array_push($imagenes, $sen->obSus($this->arr[$i]));
+					}
+					elseif ($arrA4[$i]=="ADV") {
+						array_push($imagenes, $sen->obAdv($this->arr[$i]));
+					}
+					elseif ($arrA4[$i]=="V") {
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
+					}
+					elseif ($arrA4[$i]=="ADJ") {
+						array_push($imagenes, $sen->obAdj($this->arr[$i]));
+					}
+				}
+			break;
+
+			case 15:
+				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
+					if ($arrA5[$i]=="PRN") {
+						array_push($imagenes, $sen->obPrn($this->arr[$i]));
+					}
+					elseif ($arrA5[$i]=="SUS") {
+						array_push($imagenes, $sen->obSus($this->arr[$i]));
+					}
+					elseif ($arrA5[$i]=="ADV") {
+						array_push($imagenes, $sen->obAdv($this->arr[$i]));
+					}
+					elseif ($arrA5[$i]=="V") {
+						$c = $sen->obV($this->arr[$i]);
+						if(!empty($c)){
+							array_push($imagenes, $sen->obV($this->arr[$i]));
+						}
+						else
+						{
+							array_push($imagenes, $sen->obVi($this->arr[$i]));
+						}
+					}
+					elseif ($arrA5[$i]=="ADJ") {
+						array_push($imagenes, $sen->obAdj($this->arr[$i]));
 					}
 				}
 			break;

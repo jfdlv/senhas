@@ -126,6 +126,7 @@ session_start();
 		<?php
 		if (isset($_GET["var"])) {
 		echo "<div class='row text-center'><div class='col-md-12'><h1>La oración no cumple con ningún autómata</h1></div></div>";
+		unset($_SESSION["var"]);
 		}
 		?>
 
