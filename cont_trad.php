@@ -1,8 +1,4 @@
 <?php
-// $arrEP = array('SUS','V','ART','SUS');//1
-// $arrAct = array('ART','SUS','V','ART','SUS');//2
-// $arrTrans = array('SUS','V','ART','SUS','PRP','ADP','SUS');//3
-// $arrInTrans = array('SUS','V','PRP','SUS','ART','SUS','CCT');//4
 include 'modelo.php';
 session_start();
 $frase=$_POST['frase'];
@@ -11,7 +7,7 @@ $num=$a->idenAut();
 $arret=$a->obArret();
 print_r($arret);
 if ($num==0) {
-	//header("Location: traductor1.php?var=$num");
+	header("Location: traductor1.php?var=$num");
 }
 else
 {

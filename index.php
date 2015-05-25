@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php 
 include "modelo.php";
+session_start();
 ?>
 <html>
 <head>
@@ -11,9 +12,8 @@ include "modelo.php";
 </head>
 <body>
 	<div class="container-fluid">
-		<br>
 		<div class="row">
-			<div class="col-md-12 text-right cab">
+			<div class="col-md-12 cab">
 				
 				<!-- Modal Login -->
 
@@ -32,12 +32,12 @@ include "modelo.php";
 						    <div class="row">
 						    	<div class="col-md-6 col-md-offset-3">						    		
 								    <div class="input-group">
-								    		<input type="text" class="form-control" id="user1" placeholder="Nombre de usuario" required>
+								    		<input type="text" class="form-control" id="user1" name='usuario' placeholder="Nombre de usuario" required>
 								    		<div class="input-group-addon"><i class="fa fa-user"></i></div>
 								    </div>	
 								    <br>
 								    <div class="input-group">
-								      		<input type="password" class="form-control" id="pass1" placeholder="Contraseña" required>
+								      		<input type="password" class="form-control" id="pass1" name='pass' placeholder="Contraseña" required>
 								      		<div class="input-group-addon"><i class="fa fa-key"></i></div>
 								    </div>
 						    	</div>
@@ -125,9 +125,31 @@ include "modelo.php";
 				</div><!-- /.modal -->
 
 				<!-- Botones -->
-
-				<a href="#modalLogin" data-toggle="modal" class="btn btn-primary">Login</a>
-				<a href="#modalRegister" data-toggle="modal" class="btn btn-primary">Registro</a>
+				<?php
+				if(!isset($_SESSION["usuario"])){
+					echo "<nav class='navbar navbar-default navbar-fixed-top navbar-inverse'>";
+					echo "<div class='container-fluid text-right'>";
+						echo "<a href='#modalLogin' data-toggle='modal' class='btn btn-default navbar-btn'>Login</a> ";
+						echo "<a href='#modalRegister' data-toggle='modal' class='btn btn-default navbar-btn'>Registro</a>";
+					echo "</div>";
+					echo "</nav>";
+				}
+				else
+				{
+					echo "<nav class='navbar navbar-default navbar-fixed-top navbar-inverse'>";
+					echo"<div class='container-fluid text-right'>";
+						echo "<div class='btn-group'>";
+						 echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>".$_SESSION['nombre']."<span class='caret'></span></button>";
+ 						 //echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>usuario<span class='caret'></span></button> ";
+						 echo "<ul class='dropdown-menu dropdown-menu-right' role='menu'>";
+    							echo "<li><a href='logout.php'>Cerrar sesión</a></li>";
+  						echo "</ul>";
+  						echo "</div>";
+					echo "</div>";
+					echo "</nav>";
+				}
+				?>
+					
 			</div>
 
 		</div>
@@ -152,7 +174,11 @@ include "modelo.php";
 				<li   role="presentation"><a href="diccionario.php">Diccionario</a></li>
 				<li   role="presentation"><a href="traductor1.php">Traductor</a></li>
 				<li   role="presentation"><a href="deletrear.php">Deletrear</a></li>
+				<li   role="presentation"><a href="#">Lecciones</a></li>
 				<li   role="presentation"><a href="#">Pruebas</a></li>
+				<?php if (isset($_SESSION['usuario'])) {
+					echo "<li   role='presentation'><a href='#'>Estadisticas</a></li>";
+				}?>
 				<li   role="presentation"><a href="#">Acerca de</a></li>
 			</ul>
 		</div>	

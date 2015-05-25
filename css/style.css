@@ -6724,7 +6724,10 @@ button.close {
   width: 350px;
 }
 .cab {
-  padding-bottom: 20px;
+  padding-bottom: 50px;
+}
+.btn-cab {
+  margin-top: 5px;
 }
 .modal .modal-body {
   max-height: 420px;

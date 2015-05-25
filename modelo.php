@@ -856,7 +856,6 @@ class automata{
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		$infinitivo = $array["verbo"];
-
 		if (!empty($infinitivo)) {
 						$this->tiempo="presente";
 						$this->arr[$i]=$infinitivo;
@@ -1088,6 +1087,7 @@ class traductor{
 	public function obtenerSenhas(){
 		global $arrEP, $arrAct, $arrNE, $arrE1, $arrE2, $arrE3, $arrNE1, $arrNE2, $arrNE3, $arrNE4, $arrA1, $arrA2, $arrA3, $arrA4, $arrA5;
 		sizeof($arrEP);
+		$imagenes = array('tiempo' => 0);
 		if ($this->tiempo == "presente") {
 			$imagenes = array('tiempo' => 0);
 		}
@@ -1320,6 +1320,7 @@ class traductor{
 			break;
 
 			case 11:
+				print_r($this->arr);
 				for ($i=0; $i <sizeof($this->arr) ; $i++) { 
 					if ($arrA1[$i]=="SUS") {
 						array_push($imagenes, $sen->obSus($this->arr[$i]));
@@ -1476,6 +1477,14 @@ class usuario{
 				mysqli_query($link,$query);
 				mysqli_close($link);
 				return $result;
+	}
+	public function obtenerUsuario(){
+				$link=conectar();
+				$query = "SELECT usuario,nombre, password FROM USUARIO WHERE USUARIO='$this->usuario'";
+				$result=mysqli_query($link,$query);
+				$array=mysqli_fetch_array($result);
+				mysqli_close($link);
+				return $array;
 	}
 }
 function conectar()
