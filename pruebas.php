@@ -31,6 +31,12 @@
 //     echo 'La contraseña no es válida.';
 // }
 //$tr -> deletrear("hola");
+$a1 = array("1","1","1","1");
+$a2 = array("2","2","2","2");
+$a = array();
+array_push($a, $a1);
+array_push($a, $a2);
+print_r($a);
 ?>
 <html>
 <head>

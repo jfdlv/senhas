@@ -4,14 +4,14 @@ session_start();
 ?>
 <html>
 <head>
-	<title>Lecciones</title>
+	<title>Conjuncion</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.min.css" >
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row">
+<div class="container-fluid">
+	<div class="row">
 			<div class="col-md-12 cab">
 				
 				<!-- Modal Login -->
@@ -162,43 +162,37 @@ session_start();
 					
 			</div>
 
-		</div>
+	</div>
 
-		<div class="row jumbotron">
-			<div class="row banner">
-				<div class="col-md-12 text-center">
-					<div class="row">
-						<h1>LECCIONES</h1>	
-					</div>
+	<div class="row well">
+		<div class="row banner">
+			<div class="col-md-12 text-center">
+				<div class="row">
+					<h1>Conjungar verbos en lenguaje de señas</h1>	
 				</div>
 			</div>
 		</div>
+	</div>
+
+<div class="row">
+	<div class="col-md-12">	
+		<div class="col-md-4 col-md-offset-4">
+		<h4>Asi como en el español, en lenguaje de señas se requiere la conjunción de los verbos para expresar el tiempo de la oración.</h4>
+		</div>
+	</div>
+</div>
 
 <hr>
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="col-md-4 col-md-offset-4">			
-				    <ul class="list-group">
-				    	<a class="list-group-item active text-center"><h4>Lecciones disponibles</h4></a>
-				    	<a class="list-group-item text-center" href="Lecciona.php">Abecedario</a>
-				    	<a class="list-group-item text-center" href="leccionb.php">Conjunción verbos</a>
-				    	<a class="list-group-item text-center" href="leccionc.php">Construcción oraciones simples</a>
-				    </ul>
-				</div>
-			</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-4 col-md-offset-4">
+		<h4>Conjunción en tiempo pasado</h4>
+		<p>Cuando se necesita conjugar un verbo para expresar una oración en pasado, se realiza la primero la seña correspondiente a "antes" y posteriormente se realiza la seña del verbo</p>
+		<h4>Seña correspondiente a la palabra "antes"</h4>
 		</div>
-
-		<div class="navbar navbar-inverse navbar-fixed-bottom bg" role="navigation">
-	    	<div class="container">
-	    		<div class="navbar-text pull-left">
-	    			<p class="letras">© Fernando De La Via</p>
-	    		</div>
-	    	</div>
-    	</div>
 	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/validaciones.js"></script>
+</div>
+</div>
 </body>
 </html>

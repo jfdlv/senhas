@@ -6733,6 +6733,25 @@ button.close {
   max-height: 420px;
   overflow-y: auto;
 }
+.panelb {
+  max-height: 420px;
+  overflow-y: auto;
+}
 .importante {
   color: #ff0000;
+}
+tr {
+width: 100%;
+display: inline-table;
+height:60px;                
+}
+
+table{
+ height:500px;              
+}
+tbody{
+  overflow-y: scroll;      
+  height: 400px;            
+  width: 100%;
+  position: absolute;
 }

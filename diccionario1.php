@@ -1,17 +1,33 @@
 <?php 
 include 'modelo.php';
-session_start();	
+session_start();
 ?>
 <html>
 <head>
-	<title>Lecciones</title>
+	<title>Diccionario</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.min.css" >
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row">
+
+<div class="modal fade  bs-example-modal-lg" role="dialog" id="modalAyuda">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title text-center">Ayuda</h4>
+				      </div>
+				      <div class="modal-body">
+				        <p>Seleccione una de las opciones, y a continuación se desplegarán las señas correspondientes</p>
+				      </div>
+				    </div><!-- /.modal-content -->
+				  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="container-fluid">
+	<br>
+	<div class="row">
 			<div class="col-md-12 cab">
 				
 				<!-- Modal Login -->
@@ -131,6 +147,7 @@ session_start();
 							</div>
 				<!-- Botones -->
 				<?php
+
 				if(!isset($_SESSION["usuario"])){
 					echo "<div class='col-md-6 text-right'>";
 						echo "<a href='#modalLogin' data-toggle='modal' class='btn btn-default navbar-btn'>Login</a> ";
@@ -162,43 +179,177 @@ session_start();
 					
 			</div>
 
-		</div>
-
-		<div class="row jumbotron">
-			<div class="row banner">
-				<div class="col-md-12 text-center">
+<!-- OPCIONES DE DESPLIEGUE -->
+<div class="row">	
+		<div class="col-md-4 col-md-offset-4">
+			<div class="panel panel-default">
+				  <div class="panel-heading">
 					<div class="row">
-						<h1>LECCIONES</h1>	
+						<div class="col-md-12">
+							<div class="col-md-6 text-left"><p>DICCIONARIO: Lenguaje de señas - Español</p></div>
+							<div class="col-md-6 text-right"><a href="#modalAyuda" data-toggle="modal" class="btn btn-primary"><i class="fa fa-question-circle"></i></a></div>
+						</div>
 					</div>
-				</div>
+				  </div>
+				  <div class="panel-body">
+					<form action="cont_dicc1.php" class="form" method="post" id="formDicc1">
+						<div class="formgroup">
+							<div class="row row-centered">
+								<div class="col-md-12 col-md-offset-3">
+									<div class="input-group">
+										<div class="col-md-3">
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='A'>A</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='B'>B</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='C'>C</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='D'>D</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='E'>E</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='F'>F</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='G'>G</label>
+											</div>	
+										</div>
+										<div class="col-md-3">
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='H'>H</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='I'>I</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='J'>J</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='K'>K</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='L'>L</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='M'>M</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='N'>N</label>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='Ñ'>Ñ</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='O'>O</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='P'>P</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='Q'>Q</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='R'>R</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='S'>S</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='T'>T</label>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='U'>U</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='V'>V</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='W'>W</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='X'>X</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='Y'>Y</label>
+											</div>
+											<div class="radio">
+											<label><input type="radio" name="optradio" value='Z'>Z</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</form>
+				  </div>
+				  <div class="panel-footer">
+				  	<div class="row">
+				  		<div class="col-md-12">
+				  			<div class="col-md-6 text-left">
+				  				<p id="alerta" class="importante"></p>
+				  			</div>
+				  			<div class="col-md-6 text-right">
+				  				<button class="btn btn-primary" type="submit" form="formDicc1"><i class="fa fa-search"></i></button>	
+				  			</div>
+				  		</div>
+				  	</div>
+				  </div>
 			</div>
+			
 		</div>
+</div>
 
-<hr>
+<hr>	
+<?php 
+if (isset($_SESSION['tabet'])) {
+$ets = $_SESSION['tabet'];
+echo "<div class='row'>";
+	echo "<div class='col-md-12'>";
+		echo "<div class='col-md-6 col-md-offset-3'>";
+		echo "<table class='table table-striped'>";
+		echo "<thead><tr><th>Imagen</th></tr></thead>";
+		 	echo "<tbody>";
+		 	foreach ($ets as $et) {
+		 		echo "<tr><td><img class='img-responsive' src=".$et['imagen']."></td></tr>";
+		 	}
+		 	if (isset($_SESSION['tabvi'])) {
+		 		$vis = $_SESSION['tabvi'];
+		 		foreach ($vis as $vi) {
+		 		echo "<tr><td><img class='img-responsive' src=".$vi['imagen']."></td></tr>";
+		 		}	
+		 	}
+			echo "</tbody>";
+		echo "</table>";
+		echo "</div>";
+	echo "</div>";
+echo "</div>";
+echo "</div>";
+unset($_SESSION['tabet']);
+unset($_SESSION['tabvi']);
+}
+ ?>
 
-		<div class="row">
-			<div class="col-md-12">
-				<div class="col-md-4 col-md-offset-4">			
-				    <ul class="list-group">
-				    	<a class="list-group-item active text-center"><h4>Lecciones disponibles</h4></a>
-				    	<a class="list-group-item text-center" href="Lecciona.php">Abecedario</a>
-				    	<a class="list-group-item text-center" href="leccionb.php">Conjunción verbos</a>
-				    	<a class="list-group-item text-center" href="leccionc.php">Construcción oraciones simples</a>
-				    </ul>
-				</div>
-			</div>
-		</div>
 
-		<div class="navbar navbar-inverse navbar-fixed-bottom bg" role="navigation">
-	    	<div class="container">
-	    		<div class="navbar-text pull-left">
-	    			<p class="letras">© Fernando De La Via</p>
-	    		</div>
-	    	</div>
+
+<div class="navbar navbar-inverse navbar-fixed-bottom bg" role="navigation">
+    	<div class="container">
+    		<div class="navbar-text pull-left">
+    			<p class="letras">© Fernando De La Via</p>
+    		</div>
     	</div>
-	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/validaciones.js"></script>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/validaciones.js"></script>
 </body>
 </html>

@@ -142,6 +142,7 @@ session_start();
 						 echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>".$_SESSION['nombre']."<span class='caret'></span></button>";
  						 //echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>usuario<span class='caret'></span></button> ";
 						 echo "<ul class='dropdown-menu dropdown-menu-right' role='menu'>";
+						 		echo "<li><a href='Estadisticas.php'>Estadisticas</a></li>";
     							echo "<li><a href='logout.php'>Cerrar sesión</a></li>";
   						echo "</ul>";
   						echo "</div>";
@@ -170,16 +171,22 @@ session_start();
 		<div class="col-md-12">
 		<div class="col-md-4 col-md-offset-4">	
 			<ul class="nav nav-pills">
-				<li class="active" role="presentation"><a href="">Inicio</a></li>
-				<li   role="presentation"><a href="diccionario.php">Diccionario</a></li>
-				<li   role="presentation"><a href="traductor1.php">Traductor</a></li>
-				<li   role="presentation"><a href="deletrear.php">Deletrear</a></li>
-				<li   role="presentation"><a href="#">Lecciones</a></li>
-				<li   role="presentation"><a href="#">Pruebas</a></li>
-				<?php if (isset($_SESSION['usuario'])) {
-					echo "<li   role='presentation'><a href='#'>Estadisticas</a></li>";
-				}?>
-				<li   role="presentation"><a href="#">Acerca de</a></li>
+					<li class="active" role="presentation" class="dropdown">
+				    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Diccionario<span class="caret"></span></a>
+				    <ul class="dropdown-menu" role="menu">
+				      <li>	
+				      <a href="Diccionario.php">Español - Lenguaje de señas</a>
+				      </li>
+				      <li>	
+				      <a href="Diccionario1.php">Lenguaje de señas - Español</a>
+				      </li>
+				    </ul>
+		  		</li>
+				<li   class="active" role="presentation"><a href="traductor1.php">Traductor</a></li>
+				<li   class="active" role="presentation"><a href="deletrear.php">Deletrear</a></li>
+				<li   class="active" role="presentation"><a href="lecciones.php">Lecciones</a></li>
+				<li   class="active" role="presentation"><a href="#">Pruebas</a></li>
+				<li   class="active" role="presentation"><a href="#">Acerca de</a></li>
 			</ul>
 		</div>	
 		</div>

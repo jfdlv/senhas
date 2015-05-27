@@ -165,6 +165,7 @@ session_start();
 							 echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>".$_SESSION['nombre']."<span class='caret'></span></button>";
 	 						 //echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>usuario<span class='caret'></span></button> ";
 							 echo "<ul class='dropdown-menu dropdown-menu-right' role='menu'>";
+							 		echo "<li><a href='Estadisticas.php'>Estadisticas</a></li>";
 	    							echo "<li><a href='logout.php'>Cerrar sesión</a></li>";
 	  						echo "</ul>";
 	  						echo "</div>";
@@ -184,7 +185,7 @@ session_start();
 				  <div class="panel-heading">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="col-md-6 text-left"><p>DICCIONARIO</p></div>
+							<div class="col-md-6 text-left"><p>DICCIONARIO: Español - Lenguaje de señas</p></div>
 							<div class="col-md-6 text-right"><a href="#modalAyuda" data-toggle="modal" class="btn btn-primary"><i class="fa fa-question-circle"></i></a></div>
 						</div>
 					</div>

@@ -1073,6 +1073,18 @@ class senha{
 		mysqli_close($link);
 		return $array["imagen"];
 	}
+	public function obAlf($letra) {
+		$link = conectar();
+		$query1 = "select a.palabra, b.imagen from etiquetas a, senhas b, et_se c where a.id=c.ide and b.id=c.ids and (palabra LIKE '".$letra."%') order by palabra";
+		$query2 = "select a.infinitivo, b.imagen from veri a, senhas b, et_v c where a.idv=c.idv0 and b.id=c.ids0 and (infinitivo LIKE '".$letra."%') order by infinitivo";
+		$result1 = mysqli_query($link, $query1);
+		$result2 = mysqli_query($link, $query2);
+		$a = array();
+		array_push($a, $result1);
+		array_push($a, $result2);
+		return $a;
+
+	}
 }
 class traductor{
 	private $aut;
