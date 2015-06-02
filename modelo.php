@@ -138,7 +138,6 @@ class automata{
 			}
 		}
 		elseif(sizeof($arret)==4){
-			echo "entra";
 			$sum=0;
 			$sum1=0;
 			$sum2=0;
@@ -153,27 +152,27 @@ class automata{
 				}
 				if (strcmp ($arret[$i], $arrNE[$i]) == 0) {
 					$sum1++;
-					echo $sum1;
+					// echo $sum1;
 				}
 				if (strcmp ($arret[$i], $arrE2[$i]) == 0) {
 					$sum2++;
-					echo $sum2;
+					// echo $sum2;
 				}
 				if (strcmp ($arret[$i], $arrNE3[$i]) == 0) {
 					$sum3++;
-					echo $sum3;
+					// echo $sum3;
 				}
 				if (strcmp ($arret[$i], $arrNE4[$i]) == 0) {
 					$sum4++;
-					echo $sum4;
+					// echo $sum4;
 				}
 				if (strcmp ($arret[$i], $arrA2[$i]) == 0) {
 					$sum5++;
-					echo $sum5;
+					// echo $sum5;
 				}
 				if (strcmp ($arret[$i], $arrA3[$i]) == 0) {
 					$sum6++;
-					echo $sum6;
+					// echo $sum6;
 				}
 
 			}
@@ -846,13 +845,13 @@ class automata{
 		$etiqueta="";
 		$link=conectar();
 		$query="SELECT a.infinitivo as verbo FROM veri a, presente b WHERE b.palabra='".$verbo."' AND a.idv=b.idv1 COLLATE latin1_general_ci";
-		echo $query."<br>";
+		// echo $query."<br>";
 		$query1="SELECT a.infinitivo as verbo FROM veri a, pasado1 b WHERE b.palabra='".$verbo."' AND a.idv=b.idv2 COLLATE latin1_general_ci";
-		echo $query1."<br>";
+		// echo $query1."<br>";
 		$query2="SELECT a.infinitivo as verbo FROM veri a, pasado2 b WHERE b.palabra='".$verbo."' AND a.idv=b.idv3 COLLATE latin1_general_ci";
-		echo $query2."<br>";
+		// echo $query2."<br>";
 		$query3="SELECT a.infinitivo as verbo FROM veri a, futuro b WHERE b.palabra='".$verbo."' AND a.idv=b.idv4 COLLATE latin1_general_ci";
-		echo $query3."<br>";
+		// echo $query3."<br>";
 		$result=mysqli_query($link,$query);
 		$array=mysqli_fetch_array($result);
 		$infinitivo = $array["verbo"];

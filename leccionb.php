@@ -184,12 +184,127 @@ session_start();
 
 <hr>
 
+
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-4 col-md-offset-4">
+		<h4>Conjunción en tiempo presente</h4>
+		<p>Cuando se necesita expresar algo en presente en lenguaje de señas, sencillamente realiza la seña correspondiente al verbo</p>
+		<br>
+		</div>
+	</div>
+</div>
+
+<hr>
+
 <div class="row">
 	<div class="col-md-12">
 		<div class="col-md-4 col-md-offset-4">
 		<h4>Conjunción en tiempo pasado</h4>
 		<p>Cuando se necesita conjugar un verbo para expresar una oración en pasado, se realiza la primero la seña correspondiente a "antes" y posteriormente se realiza la seña del verbo</p>
+		<br>
 		<h4>Seña correspondiente a la palabra "antes"</h4>
+		<img src="imagenes/antes.png" class='img-responsive'>
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-4 col-md-offset-4">
+		<h4>Conjunción en tiempo futuro</h4>
+		<p>Al igual que cuando se conjuga un verbo en pasado cuando se trata de un verbo conjugado en futuro se realiza la primero la seña correspondiente a "futuro" y posteriormente se realiza la seña del verbo</p>
+		<br>
+		<h4>Seña correspondiente a la palabra "futuro"</h4>
+		<img src="imagenes/futuro.png" class='img-responsive'>
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-4 col-md-offset-4">
+			<h4>A continuación se presentá un ejemplo de como se veria una oración conjugada en tiempo pasado. Esta forma de conjugación es aplicable también para tiempo futuro pero cuando se trata de tiempo presente, como se ha mencionado antes sencillamente se realiza la seña correspondiente al verbo y ya no se especifica el tiempo</h4>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="col-md-4 col-md-offset-4">
+			<p>La frase que se traducirá será "juan escribió una carta", esta como se puede ver a continuación es una frase de tipo:</p>
+			<?php 
+				$frase="juan escribió una carta";
+				$a= new automata($frase,null,null,null);
+				$num=$a->idenAut();
+				$etiquetas=$a->obArret();
+				$tr= new traductor($num,$t=$a->obTiempo(),$a->obArr());
+				$t=$a->obTiempo();
+				$palabras=$a->obArr();
+				$arret=$a->obArret();
+				$imagenes=$tr->obtenerSenhas();
+				echo "<div class='panel panel-default'>";
+				echo "<div class='panel-heading'>".$_SESSION["frase"]."</div>";
+				echo "<div class='panel-body'>";
+				for ($i=0; $i < (sizeof($imagenes)-1) ; $i++) { 
+					if (!empty($imagenes[$i])) {
+						if ($etiquetas[$i]=="V") {
+							if ($imagenes['tiempo'] == 'presente') {
+								echo "<div class='panel panel-default's>";
+								echo "<div class='panel-heading'>".$palabras[$i]."</div>";
+								echo "<div class='panel-body'>";
+								echo "<img class='img-responsive'src=$imagenes[$i]>";
+								echo "</div>";
+								echo "</div>";
+							}
+							else
+							{
+								echo "<div class='panel panel-default's>";
+								echo "<div class='panel-heading'>".$palabras[$i]."</div>";
+								echo "<div class='panel-body'>";
+								echo "<img class='img-responsive'src=".$imagenes['tiempo'].">";
+								echo "</div>";
+								echo "</div>";
+								echo "<div class='panel panel-default's>";
+								echo "<div class='panel-heading'>".$palabras[$i]."</div>";
+								echo "<div class='panel-body'>";
+								echo "<img class='img-responsive'src=$imagenes[$i]>";
+								echo "</div>";
+								echo "</div>";
+							}
+							
+						}
+						else
+						{
+							echo "<div class='panel panel-default's>";
+							echo "<div class='panel-heading'>".$palabras[$i]."</div>";
+							echo "<div class='panel-body'>";
+							echo "<img class='img-responsive'src=$imagenes[$i]>";
+							echo "</div>";
+							echo "</div>";
+						}
+						
+					}
+					else
+					{
+						$tr= new traductor(null,null,null);
+						echo "<div class='panel panel-default's>";
+						echo "<div class='panel-heading'>".$palabras[$i]."</div>";
+						echo "<div class='panel-body'>";
+							$tr -> deletrear($palabras[$i]);
+						echo "</div>";
+						echo "</div>";
+					}
+				}
+				echo "</div>";
+				echo "</div>";
+				echo "<br><br><br><br>"
+			?>
 		</div>
 	</div>
 </div>

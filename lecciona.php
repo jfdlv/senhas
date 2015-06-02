@@ -195,7 +195,7 @@ session_start();
 		$c = 0;
 		foreach($imgs as $img){
 			if($c == 3){
-				echo "<div class='col-md-2'>";
+				echo "<div class='col-md-1'>";
 				echo "<img src='".$img['imagen']."' class='img-responsive'>";
 				echo "</div>";
 				$c = 0;

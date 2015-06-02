@@ -183,7 +183,6 @@ session_start();
 				    	<a class="list-group-item active text-center"><h4>Lecciones disponibles</h4></a>
 				    	<a class="list-group-item text-center" href="Lecciona.php">Abecedario</a>
 				    	<a class="list-group-item text-center" href="leccionb.php">Conjunción verbos</a>
-				    	<a class="list-group-item text-center" href="leccionc.php">Construcción oraciones simples</a>
 				    </ul>
 				</div>
 			</div>
