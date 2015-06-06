@@ -1487,7 +1487,6 @@ class usuario{
 				$query="INSERT INTO usuario VALUES('$this->usuario','$pass','$this->nombre','$this->apellido')";
 				mysqli_query($link,$query);
 				mysqli_close($link);
-				return $result;
 	}
 	public function obtenerUsuario(){
 				$link=conectar();
@@ -1496,6 +1495,86 @@ class usuario{
 				$array=mysqli_fetch_array($result);
 				mysqli_close($link);
 				return $array;
+	}
+}
+class pregunta{
+	private $id;
+	private $desc;
+
+	public function __construct($id,$desc){
+		$this->id=$id;
+		$this->desc=$desc;
+	}
+	public function crearPregunta(){
+		$link = conectar();
+		$query = "INSERT INTO pregunta VALUES($this->id,'$this->desc')";
+		mysqli_query($link,$query);
+		mysqli_close($link);
+	}
+	public function evaluarRespuesta($ids){
+		$link = conectar();
+		$query = "SELECT a.desc, b.id, c.num FROM pregunta a,senhas b, respuesta c WHERE a.id=c.idp AND b.id=c.ids AND a.id =$this->id";
+		$result = mysqli_query($link,$query);
+		while ($arr = mysqli_fetch_array($result)) {
+			$rows[] = $arr; 
+		}
+		$c = 0;
+		$comp = 0;
+		foreach ($rows as $row) {
+			if($row['id'] == $ids[$c])
+			{
+				$comp++;
+			}  
+			$c++;
+		}
+		if($comp==sizeof($ids)){
+			return true;
+		}
+		else {
+			return false;
+
+		}
+	}
+}
+class test{
+	private $id;
+	private $nombre;
+	private $nivel;
+	private $desc;
+
+	public function __construct($id,$nombre,$nivel,$desc){
+		$this->id=$id;
+		$this->nombre=$nombre;
+		$this->nivel=$nivel;
+		$this->desc=$desc;
+	}
+
+	// public function crearTest(){
+
+	// }
+
+	// public function almacenarPuntaje(){
+
+	// }
+
+	public function evaluarTest($ids){
+		$link = conectar();
+		$query = "SELECT b.id, b.desc FROM test a,pregunta b, t_p c WHERE a.id=c.idt and b.id=c.idp AND a.id=$this->id";
+		$result = mysqli_query($link,$query);
+		while ($arr = mysqli_fetch_array($result)) {
+			$pregs[]=$arr;
+		}
+		$c=0;
+		$cor=0;
+		foreach ($pregs as $preg) {
+			$s = new pregunta($preg['id'],null);
+			if($s->evaluarRespuesta($ids[$c])){
+				$cor++;
+			}
+			$c++;
+		}
+		$puntaje = ($cor*100)/sizeof($pregs);
+		return $puntaje;
 	}
 }
 function conectar()

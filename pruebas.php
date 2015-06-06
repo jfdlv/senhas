@@ -2,7 +2,7 @@
 // $var=explode("ó", "conquistó");
 // echo $var[0];
 
-// include 'modelo.php';
+include 'modelo.php';
 
 // $tr= new automata(null,null,null,null);
 // $palabra=$tr->desConji("abuela",2);
@@ -31,14 +31,28 @@
 //     echo 'La contraseña no es válida.';
 // }
 //$tr -> deletrear("hola");
-$a1 = array("1","1","1","1");
-$a2 = array("2","2","2","2");
+$r1 = array("47","54","51","40");
+$r2 = array("49","40","48","52","44");
+$r3 = array("52","54","53","59","40","66","40");
+$r4 = array("42","40","58","40");
+$r5 = array("61","40","53","40","47","54","57","48","40");
 $a = array();
-array_push($a, $a1);
-array_push($a, $a2);
+array_push($a, $r1);
+array_push($a, $r2);
+array_push($a, $r3);
+array_push($a, $r4);
+array_push($a, $r5);
 print_r($a);
+
+
+$t = new test(1,null,null,null);
+echo $t->evaluarTest($a)." esto es?";
+// $p = new pregunta(1,null);
+// $ids = array(47,54,51,40);
+// 
+
 ?>
-<html>
+<!-- <html>
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -70,4 +84,4 @@ print_r($a);
 		});
 	</script>
 </body>
-</html>
+</html> -->
