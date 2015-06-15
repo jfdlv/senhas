@@ -154,7 +154,7 @@ while($arr = mysqli_fetch_array($result)){
 							 echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>".$_SESSION['nombre']."<span class='caret'></span></button>";
 	 						 //echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>usuario<span class='caret'></span></button> ";
 							 echo "<ul class='dropdown-menu dropdown-menu-right' role='menu'>";
-							 		echo "<li><a href='Estadisticas.php'>Estadisticas</a></li>";
+							 		echo "<li><a href='estadisticas.php'>Estadisticas</a></li>";
 	    							echo "<li><a href='logout.php'>Cerrar sesión</a></li>";
 	  						echo "</ul>";
 	  						echo "</div>";
@@ -190,7 +190,7 @@ while($arr = mysqli_fetch_array($result)){
 		 			<tbody>
 		 			<?php 
 		 				foreach ($tests as $test) {
-		 					echo "<form action='cont_test.php' method='post'><input type='hidden' value='".$test["id"]."' name='id'><tr><td class='col-md-1 text-center'>".$test["id"]."</td><td class='col-md-2 text-center'>".$test["nombre"]."</td><td class='col-md-5 text-center'>".$test["desc"]."</td><td class='col-md-2 text-center'>".$test["nivel"]."</td><td class='col-md-2 text-center'><input type='submit' value = 'Tomar'></td></tr></form>";
+		 					echo "<form action='cont_test.php' method='post'><input type='hidden' value='".$test["id"]."' name='id'><input type='hidden' value='".$test["nombre"]."' name='nombre'><tr><td class='col-md-1 text-center'>".$test["id"]."</td><td class='col-md-2 text-center'>".$test["nombre"]."</td><td class='col-md-5 text-center'>".$test["desc"]."</td><td class='col-md-2 text-center'>".$test["nivel"]."</td><td class='col-md-2 text-center'><input class='btn btn-primary' type='submit' value = 'Tomar'></td></tr></form>";
 		 				}
 		 			?>
 		 			</tbody>
@@ -200,7 +200,7 @@ while($arr = mysqli_fetch_array($result)){
 		</div>
 
 		<div class="navbar navbar-inverse navbar-fixed-bottom bg" role="navigation">
-	    	<div class="container">
+	    	<div class="container-fluid">
 	    		<div class="navbar-text pull-left">
 	    			<p class="letras">© Fernando De La Via</p>
 	    		</div>

@@ -1496,6 +1496,17 @@ class usuario{
 				mysqli_close($link);
 				return $array;
 	}
+	public function obtenerPintento($idt){
+		$link = conectar();
+		$query="SELECT calif as puntaje from calificaciones where usuario='jfdlv' and idt='1'";
+		$result=mysqli_query($link,$query);
+		while($array=mysqli_fetch_array($result))
+		{
+			$notas[]=$array;
+		}
+		mysqli_close($link);
+		return $notas;
+	}
 }
 class pregunta{
 	private $id;
@@ -1513,7 +1524,7 @@ class pregunta{
 	}
 	public function evaluarRespuesta($ids){
 		$link = conectar();
-		$query = "SELECT a.desc, b.id, c.num FROM pregunta a,senhas b, respuesta c WHERE a.id=c.idp AND b.id=c.ids AND a.id =$this->id";
+		$query = "SELECT a.desc, b.id, c.num FROM pregunta a,senhas b, respuesta c WHERE a.id=c.idp AND b.id=c.ids AND a.id =$this->id ORDER BY c.num";
 		$result = mysqli_query($link,$query);
 		while ($arr = mysqli_fetch_array($result)) {
 			$rows[] = $arr; 
@@ -1535,6 +1546,22 @@ class pregunta{
 
 		}
 	}
+	public function obtenerRespuestas(){
+		$link = conectar();
+		$query = "SELECT b.imagen, b.id, c.num,c.id as idr FROM pregunta a,senhas b, respuesta c WHERE a.id=c.idp AND b.id=c.ids AND a.id =$this->id ORDER BY c.num";
+		$result = mysqli_query($link,$query);
+		while ($arr = mysqli_fetch_array($result)) {
+			$resps[] = $arr; 
+		}
+		return $resps;
+	}
+	public function obtenerRespuestaA(){
+		$link = conectar();
+		$query = "select id as id, Imagen as imagen from senhas order by RAND() LIMIT 1";
+		$result = mysqli_query($link,$query);
+		$val = mysqli_fetch_array($result);
+		return $val;
+	}
 }
 class test{
 	private $id;
@@ -1553,9 +1580,13 @@ class test{
 
 	// }
 
-	// public function almacenarPuntaje(){
-
-	// }
+	public function almacenarPuntaje($puntaje,$u){
+		$link = conectar();
+		$fecha = date("Y-m-d");
+		$query = "INSERT INTO calificaciones VALUES(null,'$u',$this->id,$puntaje,'$fecha')";
+		mysqli_query($link,$query);
+		mysqli_close($link);
+	}
 
 	public function evaluarTest($ids){
 		$link = conectar();
@@ -1575,6 +1606,15 @@ class test{
 		}
 		$puntaje = ($cor*100)/sizeof($pregs);
 		return $puntaje;
+	}
+	public function obtenerPreguntas(){
+		$link = conectar();
+		$query = "SELECT b.id, b.desc FROM test a,pregunta b, t_p c WHERE a.id=c.idt and b.id=c.idp AND a.id=$this->id";
+		$result = mysqli_query($link,$query);
+		while ($arr = mysqli_fetch_array($result)) {
+			$pregs[]=$arr;
+		}
+		return $pregs;
 	}
 }
 function conectar()

@@ -1,6 +1,13 @@
 <?php 
 include 'modelo.php';
-session_start();	
+session_start();
+$_SESSION['met']=$_GET['var'];
+$link = conectar();
+$query = "SELECT b.id, b.nombre from calificaciones a, test b where usuario='".$_SESSION['usuario']."' and a.idt=b.id group by idt";
+$result = mysqli_query($link, $query);
+while($arr = mysqli_fetch_array($result)){
+	$tests[] = $arr;
+}
 ?>
 <html>
 <head>
@@ -168,7 +175,7 @@ session_start();
 			<div class="row banner">
 				<div class="col-md-12 text-center">
 					<div class="row">
-						<h1>LECCIONES</h1>	
+						<h1>PRUEBAS</h1>	
 					</div>
 				</div>
 			</div>
@@ -178,12 +185,17 @@ session_start();
 
 		<div class="row">
 			<div class="col-md-12">
-				<div class="col-md-4 col-md-offset-4">			
-				    <ul class="list-group">
-				    	<a class="list-group-item active text-center"><h4>Lecciones disponibles</h4></a>
-				    	<a class="list-group-item text-center" href="Lecciona.php">Abecedario</a>
-				    	<a class="list-group-item text-center" href="leccionb.php">Conjunción verbos</a>
-				    </ul>
+				<div class="col-md-4 col-md-offset-4 text-center">			
+				    <table class="table table-striped">
+					<thead><tr><th class='col-md-1 text-center' >Lección</th><th class='col-md-2 text-center'>Nombre</th><th class='col-md-2 text-center'>--</th></tr></thead>
+		 			<tbody>
+		 			<?php 
+		 				foreach ($tests as $test) {
+		 					echo "<form action='cont_iniest.php' method='post'><input type='hidden' value='".$test["id"]."' name='id'><input type='hidden' value='".$test["nombre"]."' name='nombre'><tr><td class='col-md-1 text-center'>".$test["id"]."</td><td class='col-md-2 text-center'>".$test["nombre"]."</td><td class='col-md-2 text-center'><input class='btn btn-primary' type='submit' value = 'Ver'></td></tr></form>";
+		 				}
+		 			?>
+		 			</tbody>
+				    </table>
 				</div>
 			</div>
 		</div>

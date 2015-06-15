@@ -164,7 +164,7 @@ session_start();
 							 echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>".$_SESSION['nombre']."<span class='caret'></span></button>";
 	 						 //echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>usuario<span class='caret'></span></button> ";
 							 echo "<ul class='dropdown-menu dropdown-menu-right' role='menu'>";
-							 		echo "<li><a href='Estadisticas.php'>Estadisticas</a></li>";
+							 		echo "<li><a href='estadisticas.php'>Estadisticas</a></li>";
 	    							echo "<li><a href='logout.php'>Cerrar sesión</a></li>";
 	  						echo "</ul>";
 	  						echo "</div>";
@@ -250,7 +250,7 @@ if (isset($_SESSION["palabra"])) {
 </div>
 
 <div class="navbar navbar-inverse navbar-fixed-bottom bg" role="navigation">
-    	<div class="container">
+    	<div class="container-fluid">
     		<div class="navbar-text pull-left">
     			<p class="letras">© Fernando De La Via</p>
     		</div>

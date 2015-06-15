@@ -1,17 +1,18 @@
 <?php 
 include 'modelo.php';
-session_start();	
+session_start();
 ?>
 <html>
 <head>
-	<title>Lecciones</title>
+	<title>Resultado</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.min.css" >
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div class="container-fluid">
-		<div class="row">
+<div class="container-fluid">
+	<br>
+	<div class="row">
 			<div class="col-md-12 cab">
 				
 				<!-- Modal Login -->
@@ -127,7 +128,7 @@ session_start();
 					<div class="row">
 						<div class="col-md-12">
 							<div class="col-md-6 text-left">
-								<a href='index.php' class='btn btn-default navbar-btn'>Atras</a>
+								<a href='index.php' class='btn btn-default navbar-btn'>Inicio</a>
 							</div>
 				<!-- Botones -->
 				<?php
@@ -162,13 +163,11 @@ session_start();
 					
 			</div>
 
-		</div>
-
 		<div class="row jumbotron">
 			<div class="row banner">
 				<div class="col-md-12 text-center">
 					<div class="row">
-						<h1>LECCIONES</h1>	
+						<h1>ESTADÍSTICAS DISPONIBLES</h1>	
 					</div>
 				</div>
 			</div>
@@ -180,24 +179,24 @@ session_start();
 			<div class="col-md-12">
 				<div class="col-md-4 col-md-offset-4">			
 				    <ul class="list-group">
-				    	<a class="list-group-item active text-center"><h4>Lecciones disponibles</h4></a>
-				    	<a class="list-group-item text-center" href="Lecciona.php">Abecedario</a>
-				    	<a class="list-group-item text-center" href="leccionb.php">Conjunción verbos</a>
+				    	<a class="list-group-item active text-center"><h4>Informes de estadística disponibles</h4></a>
+				    	<a class="list-group-item text-center" href="testsreal.php?var=int">Puntajes por intento</a>
+				    	<a class="list-group-item text-center" href="testsreal.php?var=des">Curva de desempeño por test</a>
+				    	<a class="list-group-item text-center" href="testsreal.php?var=global">Curva de desempeño global</a>
 				    </ul>
 				</div>
 			</div>
 		</div>
 
-		<div class="navbar navbar-inverse navbar-fixed-bottom bg" role="navigation">
-	    	<div class="container-fluid">
-	    		<div class="navbar-text pull-left">
-	    			<p class="letras">© Fernando De La Via</p>
-	    		</div>
-	    	</div>
+<div class="navbar navbar-inverse navbar-fixed-bottom bg" role="navigation">
+    	<div class="container-fluid">
+    		<div class="navbar-text pull-left">
+    			<p class="letras">© Fernando De La Via</p>
+    		</div>
     	</div>
-	</div>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/validaciones.js"></script>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/validaciones.js"></script>
 </body>
 </html>

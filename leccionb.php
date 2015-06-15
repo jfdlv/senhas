@@ -127,7 +127,7 @@ session_start();
 					<div class="row">
 						<div class="col-md-12">
 							<div class="col-md-6 text-left">
-								<a href='index.php' class='btn btn-default navbar-btn'>Atras</a>
+								<a href='lecciones.php' class='btn btn-default navbar-btn'>Atras</a>
 							</div>
 				<!-- Botones -->
 				<?php
@@ -148,7 +148,7 @@ session_start();
 							 echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>".$_SESSION['nombre']."<span class='caret'></span></button>";
 	 						 //echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>usuario<span class='caret'></span></button> ";
 							 echo "<ul class='dropdown-menu dropdown-menu-right' role='menu'>";
-							 		echo "<li><a href='Estadisticas.php'>Estadisticas</a></li>";
+							 		echo "<li><a href='estadisticas.php'>Estadisticas</a></li>";
 	    							echo "<li><a href='logout.php'>Cerrar sesión</a></li>";
 	  						echo "</ul>";
 	  						echo "</div>";
@@ -249,7 +249,7 @@ session_start();
 				$arret=$a->obArret();
 				$imagenes=$tr->obtenerSenhas();
 				echo "<div class='panel panel-default'>";
-				echo "<div class='panel-heading'>".$_SESSION["frase"]."</div>";
+				echo "<div class='panel-heading'>".$frase."</div>";
 				echo "<div class='panel-body'>";
 				for ($i=0; $i < (sizeof($imagenes)-1) ; $i++) { 
 					if (!empty($imagenes[$i])) {
@@ -307,6 +307,14 @@ session_start();
 			?>
 		</div>
 	</div>
+</div>
+<br><br><br>
+<div class="navbar navbar-inverse navbar-fixed-bottom bg" role="navigation">
+    	<div class="container-fluid">
+    		<div class="navbar-text pull-left">
+    			<p class="letras">© Fernando De La Via</p>
+    		</div>
+    	</div>
 </div>
 </div>
 </body>

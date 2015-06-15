@@ -47,24 +47,33 @@ print_r($a);
 
 $t = new test(1,null,null,null);
 echo $t->evaluarTest($a)." esto es?";
-// $p = new pregunta(1,null);
-// $ids = array(47,54,51,40);
-// 
+$p = new pregunta(1,null);
+$ids = array(47,54,51,40);
+ 
+echo 'fecha:'.
 
 ?>
-<!-- <html>
+<html>
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.min.css" >
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="js/caman.full.min.js"></script>
+	<script src="js/pruebas.js"></script>
 </head>
 <body>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="col-md-2">	
-			<img class='img-responsive' src="imagenes/abuela.png" id="image">
+			<?php 
+			$u = 1;
+			echo "<img class='img-responsive' src='imagenes/abuela.png'  id='imagen".$u."'  onload=\"valor('#imagen1".$u."')\">"
+			?>
+			</div>
+			<div class="col-md-2">	
+			<img class='img-responsive' src="imagenes/b.png" id="imagen2" onload="valor('#imagen2')">
 			</div>
 		</div>
 	</div>
@@ -73,15 +82,8 @@ echo $t->evaluarTest($a)." esto es?";
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="JS/caman.full.min.js"></script>
-	<script>
-		Caman("#image", function () {
-		// width, height, x, y
-		this.crop(150,150,0,0);
 
-		// Still have to call render!
-		this.render();
-		});
-	</script>
+
+	
 </body>
-</html> -->
+</html>
