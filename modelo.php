@@ -1498,7 +1498,7 @@ class usuario{
 	}
 	public function obtenerPintento($idt){
 		$link = conectar();
-		$query="SELECT calif as puntaje from calificaciones where usuario='jfdlv' and idt='1'";
+		$query="SELECT fecha, calif as puntaje from calificaciones where usuario='".$this->usuario."' and idt=$idt ORDER BY fecha ASC";
 		$result=mysqli_query($link,$query);
 		while($array=mysqli_fetch_array($result))
 		{
@@ -1506,6 +1506,29 @@ class usuario{
 		}
 		mysqli_close($link);
 		return $notas;
+	}
+	public function obtenerPcurv($idt){
+		$link = conectar();
+		$query = "SELECT fecha, calif as puntaje from calificaciones where usuario='".$this->usuario."' and idt=$idt ORDER BY fecha";
+		$result=mysqli_query($link,$query);
+		while($array=mysqli_fetch_assoc($result))
+		{
+			$valores[]=$array;
+		}
+		mysqli_close($link);
+		return $valores;
+
+	}
+	public function obtenerGcurv(){
+		$link = conectar();
+		$query = "SELECT a.fecha, AVG(a.calif) as media, AVG(b.calif) as mediag from calificaciones a, calificaciones b where a.fecha=b.fecha and a.usuario='".$this->usuario."' GROUP BY fecha";
+		$result=mysqli_query($link,$query);
+		while($array=mysqli_fetch_assoc($result))
+		{
+			$valores[]=$array;
+		}
+		mysqli_close($link);
+		return $valores;
 	}
 }
 class pregunta{

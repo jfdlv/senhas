@@ -8,10 +8,7 @@ if ($var == 'int') {
 	header("Location: cont_int.php");
 }
 elseif ($var == 'des') {
-	header("Location: cont_des.php");
-}
-elseif ($var == 'global') {
-	header("Location: cont_global.php");
+	header("Location: curvat.php");
 }
 
 ?>

@@ -1,14 +1,18 @@
 <?php 
 include 'modelo.php';
 session_start();
-?>
+ ?>
 <html>
 <head>
-	<title>Resultado</title>
+	<title>curva por test</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.min.css" >
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
+<script src="js/amcharts.js" type="text/javascript"></script>
+<script src="js/serial.js" type="text/javascript"></script>
+<script src="js/dataloader.min.js" type="text/javascript"></script>
 <body>
 <div class="container-fluid">
 	<br>
@@ -129,6 +133,7 @@ session_start();
 						<div class="col-md-12">
 							<div class="col-md-6 text-left">
 								<a href='index.php' class='btn btn-default navbar-btn'>Inicio</a>
+								<a href='estadisticas.php' class='btn btn-default navbar-btn'>Estadísticas</a>
 							</div>
 				<!-- Botones -->
 				<?php
@@ -149,7 +154,6 @@ session_start();
 							 echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>".$_SESSION['nombre']."<span class='caret'></span></button>";
 	 						 //echo "<button type='button' class='btn btn-default dropdown-toggle btn-cab' data-toggle='dropdown' aria-expanded='false'>usuario<span class='caret'></span></button> ";
 							 echo "<ul class='dropdown-menu dropdown-menu-right' role='menu'>";
-							 		echo "<li><a href='estadisticas.php'>Estadisticas</a></li>";
 	    							echo "<li><a href='logout.php'>Cerrar sesión</a></li>";
 	  						echo "</ul>";
 	  						echo "</div>";
@@ -167,7 +171,7 @@ session_start();
 			<div class="row banner">
 				<div class="col-md-12 text-center">
 					<div class="row">
-						<h1>ESTADÍSTICAS DISPONIBLES</h1>	
+						<h1>Curva global</h1>	
 					</div>
 				</div>
 			</div>
@@ -175,17 +179,13 @@ session_start();
 
 <hr>
 
+
 		<div class="row">
-			<div class="col-md-12">
-				<div class="col-md-4 col-md-offset-4">			
-				    <ul class="list-group">
-				    	<a class="list-group-item active text-center"><h4>Informes de estadística disponibles</h4></a>
-				    	<a class="list-group-item text-center" href="testsreal.php?var=int">Puntajes por intento</a>
-				    	<a class="list-group-item text-center" href="testsreal.php?var=des">Curva de desempeño por test</a>
-				    	<a class="list-group-item text-center" href="global.php">Curva de desempeño global</a>
-				    </ul>
+				<div class="col-md-12">
+					<div class="col-md-6 col-md-offset-3">
+						<div id="chartdiv" style="width:100%; height:400px;"></div>
+					</div>
 				</div>
-			</div>
 		</div>
 
 <div class="navbar navbar-inverse navbar-fixed-bottom bg" role="navigation">
@@ -198,5 +198,53 @@ session_start();
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/validaciones.js"></script>
+ <script>
+  var chart = AmCharts.makeChart( "chartdiv", {
+    "type": "serial",
+    "dataLoader": {
+      "url": "data1.php"
+    },
+    "pathToImages": "/images/",
+    "categoryField": "fecha",
+    "dataDateFormat": "YYYY-MM-DD",
+    "startDuration": 1,
+    "categoryAxis": {
+      "parseDates": true
+    },
+    valueAxes: [{
+                   stackType: "regular",
+                   gridAlpha: 0.07,
+                   title: "Promedios"
+               }],
+
+    "graphs": [ {
+      "title": "rendimiento de usuario",
+      "valueField": "media",
+      "bullet": "round",
+      "bulletBorderColor": "#FFFFFF",
+      "bulletBorderThickness": 2,
+      "lineThickness ": 2,
+      "lineAlpha": 0.5
+    }, {
+    "title": "rendimiento global",
+    "valueField": "mediag",
+    "bullet": "round",
+    "bulletBorderColor": "#FFFFFF",
+    "bulletBorderThickness": 2,
+    "lineThickness ": 2,
+    "lineAlpha": 0.5
+  	} ],
+    legend: {
+	    position: "bottom",
+	    valueText: "[[value]]",
+	    valueWidth: 100,
+	    valueAlign: "left",
+		equalWidths: false,
+   	},
+    chartCursor: {
+       cursorAlpha: 0
+    }
+  } );
+</script>
 </body>
 </html>
